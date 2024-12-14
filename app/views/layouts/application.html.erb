@@ -18,8 +18,15 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <%= render 'shared/header' %>
+    <% end %>
+    <% unless user_signed_in? %>
+      <%= render 'shared/before_login_header' %>
+    <% end %>
+  <%= yield %>
+  <%= render 'shared/footer' %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
   </body>
 </html>
