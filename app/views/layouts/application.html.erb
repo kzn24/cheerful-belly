@@ -2,8 +2,8 @@
 <html>
   <head>
     <title><%= content_for(:title) || "Myapp" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width,initial-scale=1"> <!-- ページの表示をレスポンシブ対応 -->
+    <meta name="apple-mobile-web-app-capable" content="yes"> <!-- Appleデバイスでウェブページをフルスクリーン表示可能にする -->
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -21,12 +21,12 @@
     <% if user_signed_in? %>
       <%= render 'shared/header' %>
     <% end %>
-    <% unless user_signed_in? %>
-      <%= render 'shared/before_login_header' %>
-    <% end %>
-  <%= yield %>
-  <%= render 'shared/footer' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <p class="notice bg-transparent border-none"><%= notice %></p>
+    <p class="alert bg-transparent border-none"><%= alert %></p>
+
+    <%= yield %>
+
+    <%= render 'shared/footer' %>
   </body>
 </html>
