@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   validates :first_name, presence: true, length: { maximum: 20 }
   validates :last_name, presence: true, length: { maximum: 20 }
-  validates :first_name_kana, presence:true, length: { maximum: 20 }
-  validates :last_name_kana, presence: true, length: { maximum: 20 }
+  validates :first_name_kana, presence:true, length: { maximum: 20 }, format: { with: /\A[ｦ-ﾟ]+\z/, message: "は半角カタカナのみで入力してください" }
+  validates :last_name_kana, presence: true, length: { maximum: 20 }, format: { with: /\A[ｦ-ﾟ]+\z/, message: "は半角カタカナのみで入力してください" }
   validates :gender, presence: true
 end

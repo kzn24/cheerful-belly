@@ -1,0 +1,60 @@
+<!-- サインアップページ -->
+<h2>会員登録</h2>
+*が付いている項目は必須です。
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :last_name, "姓*" %><br>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= f.label :first_name, "名*" %><br>
+    <%= f.text_field :first_name %>
+  </div>
+  <br>
+  <div>
+    <%= f.label :last_name_kana, "姓(半角ｶﾀｶﾅ)*" %><br>
+    <%= f.text_field :last_name_kana %>
+  </div>
+
+  <div>
+    <%= f.label :first_name_kana, "名(半角ｶﾀｶﾅ)*" %><br>
+    <%= f.text_field :first_name_kana %>
+  </div>
+
+  <div>
+    <%= f.label :gender, "性別" %><br>
+    <%= f.select :gender, options_for_select([['男性', 'man'], ['女性', 'woman']], selected: nil), { prompt: '選択してください' } %>
+  </div>
+
+  <div>
+    <%= f.label :birthdate, "生年月日" %><br>
+    <%= f.date_select :birthdate, start_year: 1920, end_year:2120, use_month_numbers: true, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email, "メールアドレス*" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password, "パスワード*" %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %>文字以上で入力してください)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "パスワード確認*" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "登録" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
