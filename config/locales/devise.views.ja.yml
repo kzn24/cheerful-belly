@@ -53,6 +53,8 @@ ja:
     sessions:
       new:
         sign_in: "ログイン"
+      signed_out: "ログアウトしました"
+      signed_in: "ログインしました"
     shared:
       links:
         back: "戻る"
@@ -67,3 +69,6 @@ ja:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
     failure:
       already_authenticated: "すでにログインしています。"
+  errors:
+    messages:
+      not_saved: "登録できませんでした"
