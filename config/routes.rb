@@ -9,17 +9,17 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
   root to: "home#index"
-  
+
   # トップからログインした際のルーティング
-  get 'main/index', to: 'main#index', as: 'main_index'
+  get "main/index", to: "main#index", as: "main_index"
 
   # ログイン失敗後トップページに遷移
-  get 'home/index', to: 'home#index', as: 'home_index'
+  get "home/index", to: "home#index", as: "home_index"
 
   # ログアウト後トップページに遷移
   devise_scope :user do
-    get '/users/sign_out' => 'devise/sessions#destroy'
+    get "/users/sign_out" => "devise/sessions#destroy"
   end
 
-  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
+  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions" }
 end
