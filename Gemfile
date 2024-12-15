@@ -57,3 +57,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "devise"
+
+# 日本語化
+gem "rails-i18n"
+gem "devise-i18n-views"
