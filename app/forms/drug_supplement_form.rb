@@ -25,14 +25,14 @@ class DrugSupplementForm
 
   def create_drugs
     return if drug_name.nil?
-    drug_name.split(',').map(&:strip).each do |name|
+    drug_name.split(",").map(&:strip).each do |name|
       Drug.create!(drug_name: name, user_id: user_id)
     end
   end
 
   def create_supplements
     return if supplement_name.nil?
-    supplement_name.split(',').map(&:strip).each do |name|
+    supplement_name.split(",").map(&:strip).each do |name|
       Supplement.create!(supplement_name: name, user_id: user_id)
     end
   end
