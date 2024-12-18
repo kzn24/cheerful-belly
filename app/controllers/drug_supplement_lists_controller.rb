@@ -1,5 +1,4 @@
 class DrugSupplementListsController < ApplicationController
-  before_action :authenticate_user!
 
   def index
     # Formオブジェクトを使用してフォームを表示
