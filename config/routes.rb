@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "home/index", to: "home#index", as: "home_index" # ログイン失敗後トップページに遷移
   get "drug_supplement_lists/index" # お薬とサプリリストへ
 
-  resources :drug_supplement_lists, only: [:index, :create]
+  resources :drug_supplement_lists, only: [ :index, :create ]
 
   # ログアウト後トップページに遷移
   devise_scope :user do
