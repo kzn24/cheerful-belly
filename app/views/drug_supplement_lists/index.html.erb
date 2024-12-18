@@ -1,0 +1,60 @@
+<h1>薬とサプリのリスト</h1>
+<br>
+<br>
+<%= form_with model: @drug_supplement_form, url: drug_supplement_lists_path, method: :post, local: true do |f| %>
+  <div>
+    <%= f.label :drug_name, "お薬を新しく追加する" %><br>
+    <%= f.text_field :drug_name, placeholder: "薬名をカンマ(,)区切りで複数登録できます。" %><br>
+  </div>
+  <br>
+  <div>
+    <%= f.label :supplement_name, "サプリメントを追加する" %><br>
+    <%= f.text_field :supplement_name, placeholder: "サプリ名をカンマ(,)区切りで複数登録できます。" %><br>
+  </div>
+  <br>
+  <div>
+    <%= f.submit "登録" %>
+  </div>
+<% end %>
+
+<br>
+<br>
+
+<h2>登録済みの薬</h2>
+<table>
+  <thead>
+    <tr>
+      <th>薬名</th>
+      <th>作成日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @drugs.each do |drug| %>
+      <tr>
+        <td><%= drug.drug_name %></td>
+        <td><%= l(drug.created_at, format: :short) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<br>
+
+<h2>登録済みのサプリメント</h2>
+<table>
+  <thead>
+    <tr>
+      <th>サプリメント名</th>
+      <th>作成日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @supplements.each do |supplement| %>
+      <tr>
+        <td><%= supplement.supplement_name %></td>
+        <td><%= l(supplement.created_at, format: :short) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
