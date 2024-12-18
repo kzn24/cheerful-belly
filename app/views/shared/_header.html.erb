@@ -14,7 +14,9 @@
           <li>
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
           </li>
-          <li><a>Item 2</a></li>
+          <li>
+            <%= link_to "お薬とサプリ", drug_supplement_lists_index_path %>
+          </li>
         <% end %>
       </ul>
     </div>

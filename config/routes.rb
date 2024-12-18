@@ -6,15 +6,13 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  # Defines the root path route ("/")
   root to: "home#index"
 
-  # トップからログインした際のルーティング
-  get "main/index", to: "main#index", as: "main_index"
+  get "main/index", to: "main#index", as: "main_index" # トップからログインした際のルーティング
+  get "home/index", to: "home#index", as: "home_index" # ログイン失敗後トップページに遷移
+  get "drug_supplement_lists/index" # お薬とサプリリストへ
 
-  # ログイン失敗後トップページに遷移
-  get "home/index", to: "home#index", as: "home_index"
+  resources :drug_supplement_lists, only: [:index, :create]
 
   # ログアウト後トップページに遷移
   devise_scope :user do
