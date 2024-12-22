@@ -1,0 +1,19 @@
+<!-- お薬編集フォーム-->
+<%= turbo_frame_tag "drug" do %>
+  <%= form_with model: @drug do |f| %>
+    <div>
+      <% if @drug.errors.any? %>
+        <ul>
+          <% @drug.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div>
+      <%= f.text_field :drug_name, skip_label: true %>
+      <%= f.submit "保存" %>
+      <%= link_to "キャンセル", drug_supplement_lists_path %>
+    </div>
+  <% end %>
+<% end %>

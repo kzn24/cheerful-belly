@@ -7,7 +7,11 @@ class DrugSupplementForm
   attr_accessor :supplement_name, :string
   attr_accessor :user_id, :integer # アソシエーションを定義できないため、属性として指定することでアソシエーションとする。
 
-  # バリデーションを設定している場合はここにも同じように書く
+  # バリデーション
+  validates :drug_name, presence: true, if: -> { supplement_name.blank? } # サプリ名が未入力の場合、薬名が必須
+  validates :supplement_name, presence: true, if: -> { drug_name.blank? } # 薬名が未入力の場合サプリ名が必須
+  # どちらか一方が入力されていれば保存できる
+  validates :drug_name, :supplement_name, presence: true, if: -> { drug_name.blank? && supplement_name.blank? }
 
   def save
     return false unless valid?

@@ -1,0 +1,19 @@
+<!-- サプリ編集フォーム-->
+<%= turbo_frame_tag "supplement" do %>
+  <%= form_with model: @supplement do |f| %>
+    <div>
+      <% if @supplement.errors.any? %>
+        <ul>
+          <% @supplement.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <div>
+      <%= f.text_field :supplement_name, skip_label: true %>
+      <%= f.submit "保存" %>
+      <%= link_to "キャンセル", drug_supplement_lists_path %>
+    </div>
+  <% end %>
+<% end %>
