@@ -20,41 +20,22 @@
 <br>
 <br>
 
-<h2>登録済みの薬</h2>
-<table>
-  <thead>
-    <tr>
-      <th>薬名</th>
-      <th>作成日</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @drugs.each do |drug| %>
-      <tr>
-        <td><%= drug.drug_name %></td>
-        <td><%= l(drug.created_at, format: :short) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h2>お薬のリスト</h2>
+<% @drugs.each do |drug| %>
+  <%= turbo_frame_tag "drug" do %>
+    <div>
+      <%= drug.drug_name %>
+      <%= link_to "編集", edit_drug_path(drug) %>
+    </div>
+  <% end %>
+<% end %>
 
-<br>
-<br>
-
-<h2>登録済みのサプリメント</h2>
-<table>
-  <thead>
-    <tr>
-      <th>サプリメント名</th>
-      <th>作成日</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @supplements.each do |supplement| %>
-      <tr>
-        <td><%= supplement.supplement_name %></td>
-        <td><%= l(supplement.created_at, format: :short) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h2>サプリメントのリスト</h2>
+<% @supplements.each do |supplement| %>
+  <%= turbo_frame_tag "supplement" do %>
+    <div>
+      <%= supplement.supplement_name %>
+      <%= link_to "編集", edit_supplement_path(supplement) %>
+    </div>
+  <% end %>
+<% end %>
