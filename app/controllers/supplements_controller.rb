@@ -15,6 +15,13 @@ class SupplementsController < ApplicationController
   end
 
   def destroy
+    @supplement = current_user.supplements.find(params[:id])
+    @supplement.destroy
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to drug_supplement_lists_path, notice: "サプリメントを削除しました。" }
+    end
   end
 
   private

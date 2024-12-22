@@ -15,6 +15,13 @@ class DrugsController < ApplicationController
   end
 
   def destroy
+    @drug = current_user.drugs.find(params[:id])
+    @drug.destroy
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to drug_supplement_lists_path, notice: "お薬を削除しました。" }
+    end
   end
 
   private

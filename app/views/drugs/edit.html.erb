@@ -1,5 +1,5 @@
 <!-- お薬編集フォーム-->
-<%= turbo_frame_tag "drug" do %>
+<%= turbo_frame_tag dom_id(drug) do %>
   <%= form_with model: @drug do |f| %>
     <div>
       <% if @drug.errors.any? %>

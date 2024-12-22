@@ -22,20 +22,22 @@
 
 <h2>お薬のリスト</h2>
 <% @drugs.each do |drug| %>
-  <%= turbo_frame_tag "drug" do %>
+  <%= turbo_frame_tag dom_id(drug) do %>
     <div>
       <%= drug.drug_name %>
       <%= link_to "編集", edit_drug_path(drug) %>
+      <%= link_to "削除", drug_path(drug), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
     </div>
   <% end %>
 <% end %>
 
 <h2>サプリメントのリスト</h2>
 <% @supplements.each do |supplement| %>
-  <%= turbo_frame_tag "supplement" do %>
+  <%= turbo_frame_tag dom_id(supplement) do %>
     <div>
       <%= supplement.supplement_name %>
       <%= link_to "編集", edit_supplement_path(supplement) %>
+      <%= link_to "削除", supplement_path(supplement), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
     </div>
   <% end %>
 <% end %>
