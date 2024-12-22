@@ -3,8 +3,8 @@ class DrugSupplementListsController < ApplicationController
     # Formオブジェクトを使用してフォームを表示
     @drug_supplement_form = DrugSupplementForm.new
     # 一覧表示
-    @drugs = current_user.drugs
-    @supplements = current_user.supplements
+    @drugs = current_user.drugs.all
+    @supplements = current_user.supplements.all
   end
 
   def create
