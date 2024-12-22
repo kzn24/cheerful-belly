@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :symptoms
   # Reveal health status on /up
   get "up" => "rails/health#show", as: :rails_health_check
 
