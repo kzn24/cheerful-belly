@@ -1,5 +1,4 @@
 class DrugSupplementListsController < ApplicationController
-
   def index
     # Formオブジェクトを使用してフォームを表示
     @drug_supplement_form = DrugSupplementForm.new

@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   get "drug_supplement_lists/index" # お薬とサプリリストへ
 
   resources :drug_supplement_lists, only: [ :index, :create ]
-  resources :drugs, only: [:edit, :update, :destroy]
-  resources :supplements, only: [:edit, :update, :destroy]
+  resources :drugs, only: [ :edit, :update, :destroy ]
+  resources :supplements, only: [ :edit, :update, :destroy ]
   # ログアウト後トップページに遷移
   devise_scope :user do
     get "/users/sign_out" => "devise/sessions#destroy"

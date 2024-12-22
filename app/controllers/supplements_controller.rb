@@ -1,5 +1,5 @@
 class SupplementsController < ApplicationController
-  before_action :set_supplement, only: [:edit, :update]
+  before_action :set_supplement, only: [ :edit, :update ]
 
   def edit
     @supplement = Supplement.find(params[:id])

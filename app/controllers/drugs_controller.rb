@@ -1,5 +1,5 @@
 class DrugsController < ApplicationController
-  before_action :set_drug, only: [:edit, :update] # ログインしているユーザが登録している薬を取得し、editとupdateでのみ使えるようにしている。
+  before_action :set_drug, only: [ :edit, :update ] # ログインしているユーザが登録している薬を取得し、editとupdateでのみ使えるようにしている。
 
   def edit
     @drug = Drug.find(params[:id])
