@@ -19,8 +19,12 @@
 
 <h1>症状リスト</h1>
 <br>
-  <% @symptoms.each do |symptom| %>
+<% @symptoms.each do |symptom| %>
+  <%= turbo_frame_tag dom_id(symptom) do %>
     <div>
       <%= symptom.symptom_name %>
+      <%= link_to "編集", edit_symptom_path(symptom) %>
+      <%= link_to "削除", symptom_path(symptom), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
     </div>
   <% end %>
+<% end %>
