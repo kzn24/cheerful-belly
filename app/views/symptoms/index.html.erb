@@ -1,16 +1,26 @@
-<p style="color: green"><%= notice %></p>
+<!-- 症状リスト一覧ページ -->
+
+<%= form_with model: @symptom, local: true do |f| %>
+  <div>
+    <%= f.label :symptom_name, "症状を新しく追加する" %><br>
+    <%= f.text_field :symptom_name, placeholder: "症状をカンマ(,)区切りで複数登録できます。" %><br>
+  </div>
+  <br>
+  <div>
+    <%= f.submit "登録" %>
+  </div>
+<% end %>
+
+<br>
+<br>
+<br>
 
 <% content_for :title, "Symptoms" %>
 
-<h1>Symptoms</h1>
-
-<div id="symptoms">
+<h1>症状リスト</h1>
+<br>
   <% @symptoms.each do |symptom| %>
-    <%= render symptom %>
-    <p>
-      <%= link_to "Show this symptom", symptom %>
-    </p>
+    <div>
+      <%= symptom.symptom_name %>
+    </div>
   <% end %>
-</div>
-
-<%= link_to "New symptom", new_symptom_path %>

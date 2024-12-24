@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :drug_supplement_lists, only: [ :index, :create ]
   resources :drugs, only: [ :edit, :update, :destroy ]
   resources :supplements, only: [ :edit, :update, :destroy ]
+  resources :symptoms
   # ログアウト後トップページに遷移
   devise_scope :user do
     get "/users/sign_out" => "devise/sessions#destroy"

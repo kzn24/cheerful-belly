@@ -3,34 +3,28 @@ class SymptomsController < ApplicationController
 
   # GET /symptoms or /symptoms.json
   def index
-    @symptoms = Symptom.all
+    @symptom = Symptom.new
+    @symptoms = current_user.symptoms.all
   end
 
   # GET /symptoms/1 or /symptoms/1.json
-  def show
-  end
+  def show; end
 
   # GET /symptoms/new
-  def new
-    @symptom = Symptom.new
-  end
+  def new; end
 
   # GET /symptoms/1/edit
   def edit
   end
 
-  # POST /symptoms or /symptoms.json
   def create
-    @symptom = Symptom.new(symptom_params)
+    symptom_names = params[ :symptom ][ :symptom_name ]
 
-    respond_to do |format|
-      if @symptom.save
-        format.html { redirect_to @symptom, notice: "Symptom was successfully created." }
-        format.json { render :show, status: :created, location: @symptom }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @symptom.errors, status: :unprocessable_entity }
-      end
+    if Symptom.symptom_save(current_user, symptom_names)
+      redirect_to symptoms_path, notice: "症状を登録しました。"
+    else
+      flash.now[:alert] = "登録に失敗しました。入力内容をご確認ください。"
+      render :index, status: :unprocessable_entity
     end
   end
 

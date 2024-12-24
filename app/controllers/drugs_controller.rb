@@ -11,6 +11,7 @@ class DrugsController < ApplicationController
       redirect_to drug_supplement_lists_path
     else
       render :edit, status: :unprocessable_entity
+      flash[:alert] = "症状の登録に失敗しました。入力内容を確認してください。"
     end
   end
 
