@@ -30,24 +30,22 @@ class SymptomsController < ApplicationController
 
   # PATCH/PUT /symptoms/1 or /symptoms/1.json
   def update
-    respond_to do |format|
-      if @symptom.update(symptom_params)
-        format.html { redirect_to @symptom, notice: "Symptom was successfully updated." }
-        format.json { render :show, status: :ok, location: @symptom }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @symptom.errors, status: :unprocessable_entity }
-      end
+    @symptom = current_user.symptoms.find(params[:id])
+    if @symptom.update(symptom_params)
+      redirect_to symptoms_path
+    else
+      render :edit, status: :unprocessable_entity
+      flash[:alert] = "症状の登録に失敗しました。入力内容を確認してください。"
     end
   end
 
-  # DELETE /symptoms/1 or /symptoms/1.json
   def destroy
-    @symptom.destroy!
+    @symptom = current_user.symptoms.find(params[:id])
+    @symptom.destroy
 
     respond_to do |format|
-      format.html { redirect_to symptoms_path, status: :see_other, notice: "Symptom was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream
+      format.html { redirect_to symptoms_path, notice: "症状を削除しました。" }
     end
   end
 
