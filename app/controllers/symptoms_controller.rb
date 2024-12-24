@@ -18,7 +18,7 @@ class SymptomsController < ApplicationController
   end
 
   def create
-    symptom_names = params[ :symptom ][ :symptom_name ]
+    symptom_names = params[:symptom][:symptom_name]
 
     if Symptom.symptom_save(current_user, symptom_names)
       redirect_to symptoms_path, notice: "症状を登録しました。"
