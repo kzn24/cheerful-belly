@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :drugs
   has_many :supplements
+  has_many :symptoms
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
