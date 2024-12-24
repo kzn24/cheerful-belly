@@ -15,6 +15,7 @@ class SymptomsController < ApplicationController
 
   # GET /symptoms/1/edit
   def edit
+    @symptom = Symptom.find(params[:id])
   end
 
   def create
