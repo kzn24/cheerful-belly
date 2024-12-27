@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_22_134244) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_27_084030) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,19 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_22_134244) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_drugs_on_user_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.date "start_date", null: false
+    t.date "end_date", null: false
+    t.bigint "user_id", null: false
+    t.bigint "drug_id"
+    t.bigint "supplement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drug_id"], name: "index_schedules_on_drug_id"
+    t.index ["supplement_id"], name: "index_schedules_on_supplement_id"
+    t.index ["user_id"], name: "index_schedules_on_user_id"
   end
 
   create_table "supplements", force: :cascade do |t|
@@ -57,6 +70,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_22_134244) do
   end
 
   add_foreign_key "drugs", "users"
+  add_foreign_key "schedules", "drugs"
+  add_foreign_key "schedules", "supplements"
+  add_foreign_key "schedules", "users"
   add_foreign_key "supplements", "users"
   add_foreign_key "symptoms", "users"
 end
