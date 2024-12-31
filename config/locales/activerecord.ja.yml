@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      drug: お薬
+      supplement: サプリメント
+      schedule: 予定
+    attributes:
+      drug:
+        drug_name: お薬
+      supplement:
+        supplement_name: サプリメント
+      symptom:
+        symptom_name: 症状
+      schedule:
+        start_date: 開始日
+        end_date: 終了日
+  attributes:
+    id: ID
+    created_at: 作成日時
+    updated_at: 更新日時
+

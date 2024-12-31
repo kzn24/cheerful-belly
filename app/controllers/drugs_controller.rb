@@ -8,7 +8,7 @@ class DrugsController < ApplicationController
   def update
     @drug = current_user.drugs.find(params[:id])
     if @drug.update(drug_params)
-      redirect_to drug_supplement_lists_path
+      redirect_to user_drug_supplement_lists_path(current_user)
     else
       render :edit, status: :unprocessable_entity
       flash[:alert] = "お薬の登録に失敗しました。入力内容を確認してください。"
@@ -21,7 +21,7 @@ class DrugsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to drug_supplement_lists_path, notice: "お薬を削除しました。" }
+      format.html { redirect_to user_drug_supplement_lists_path(current_user), notice: "お薬を削除しました。" }
     end
   end
 

@@ -4,8 +4,10 @@
       +
     </div>
     <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-      <li><a>Item 1</a></li>
-      <li><a>Item 2</a></li>
+      <li>
+        <%= link_to "お薬とサプリの予定", new_user_schedule_path(current_user) %>
+      </li>
+      <li><a>今日の記録</a></li>
     </ul>
   </div>
 </div>
