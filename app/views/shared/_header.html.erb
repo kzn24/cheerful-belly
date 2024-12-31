@@ -15,10 +15,10 @@
             <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
           </li>
           <li>
-            <%= link_to "お薬とサプリ", drug_supplement_lists_index_path %>
+            <%= link_to "お薬とサプリ", user_drug_supplement_lists_path(current_user) %>
           </li>
           <li>
-            <%= link_to "症状リスト", symptoms_path %>
+            <%= link_to "症状リスト", user_symptoms_path(current_user) %>
           </li>
         <% end %>
       </ul>

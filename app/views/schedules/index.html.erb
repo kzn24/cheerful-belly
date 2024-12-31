@@ -1,0 +1,27 @@
+<div class="overflow-x-auto">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>お薬とサプリ</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @schedules.each do |schedule| %>
+        <tr>
+          <td><%= schedule.start_date_ja %></td>
+          <td><%= schedule.end_date_ja %></td>
+          <td>
+            <% if schedule.drug.present? %>
+              <div class="badge bg-sky-500 text-zinc-50"><%= schedule.drug.drug_name %></div>
+            <% elsif schedule.supplement.present? %>
+              <div class="badge bg-leaf-500 text-zinc-50"><%= schedule.supplement.supplement_name %></div>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

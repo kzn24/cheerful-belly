@@ -1,6 +1,6 @@
 <!-- 症状編集フォーム-->
 <%= turbo_frame_tag dom_id(@symptom) do %>
-  <%= form_with model: @symptom do |f| %>
+  <%= form_with model: @symptom, url: user_symptom_path(user_id: current_user.id, id: @symptom.id) do |f| %>
     <div>
       <% if @symptom.errors.any? %>
         <ul>
@@ -13,7 +13,7 @@
     <div>
       <%= f.text_field :symptom_name, skip_label: true %>
       <%= f.submit "保存" %>
-      <%= link_to "キャンセル", symptoms_path %>
+      <%= link_to "キャンセル", user_symptoms_path(current_user) %>
     </div>
   <% end %>
 <% end %>

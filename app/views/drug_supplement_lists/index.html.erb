@@ -1,7 +1,7 @@
 <h1>薬とサプリのリスト</h1>
 <br>
 <br>
-<%= form_with model: @drug_supplement_form, url: drug_supplement_lists_path, method: :post, local: true do |f| %>
+<%= form_with model: @drug_supplement_form, url: user_drug_supplement_lists_path(current_user), method: :post, local: true do |f| %>
   <div>
     <%= f.label :drug_name, "お薬を新しく追加する" %><br>
     <%= f.text_field :drug_name, placeholder: "薬名をカンマ(,)区切りで複数登録できます。" %><br>
@@ -25,8 +25,8 @@
   <%= turbo_frame_tag dom_id(drug) do %>
     <div>
       <%= drug.drug_name %>
-      <%= link_to "編集", edit_drug_path(drug) %>
-      <%= link_to "削除", drug_path(drug), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+      <%= link_to "編集", edit_user_drug_path(user_id: current_user.id, id: drug.id) %>
+      <%= link_to "削除", user_drug_path(user_id: current_user.id, id: drug.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
     </div>
   <% end %>
 <% end %>
@@ -36,8 +36,8 @@
   <%= turbo_frame_tag dom_id(supplement) do %>
     <div>
       <%= supplement.supplement_name %>
-      <%= link_to "編集", edit_supplement_path(supplement) %>
-      <%= link_to "削除", supplement_path(supplement), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+      <%= link_to "編集", edit_user_supplement_path(user_id: current_user.id, id: supplement.id) %>
+      <%= link_to "削除", user_supplement_path(user_id: current_user.id, id: supplement.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
     </div>
   <% end %>
 <% end %>

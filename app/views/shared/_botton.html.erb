@@ -1,0 +1,13 @@
+<div class="fixed bottom-4 right-4">
+  <div class="dropdown dropdown-top dropdown-end">
+    <div tabindex="0" role="button" class="btn m-1 rounded-full w-12 h-12 flex items-center justify-center text-white bg-tomato hover:bg-rose-800" >
+      +
+    </div>
+    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+      <li>
+        <%= link_to "お薬とサプリの予定", new_user_schedule_path(current_user) %>
+      </li>
+      <li><a>今日の記録</a></li>
+    </ul>
+  </div>
+</div>

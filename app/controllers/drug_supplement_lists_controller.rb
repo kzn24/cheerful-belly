@@ -12,7 +12,7 @@ class DrugSupplementListsController < ApplicationController
     @drug_supplement_form.user_id = current_user.id
 
     if @drug_supplement_form.save
-      redirect_to drug_supplement_lists_path, notice: "お薬とサプリメントの登録ができました。"
+      redirect_to user_drug_supplement_lists_path(current_user), notice: "お薬とサプリメントの登録ができました。"
     else
       @drugs = current_user.drugs
       @supplements = current_user.supplements

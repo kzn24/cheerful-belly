@@ -8,7 +8,7 @@ class SupplementsController < ApplicationController
   def update
     @supplement = current_user.supplements.find(params[:id])
     if @supplement.update(supplement_params)
-      redirect_to drug_supplement_lists_path
+      redirect_to user_drug_supplement_lists_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -20,7 +20,7 @@ class SupplementsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to drug_supplement_lists_path, notice: "サプリメントを削除しました。" }
+      format.html { redirect_to user_drug_supplement_lists_path(current_user), notice: "サプリメントを削除しました。" }
     end
   end
 
