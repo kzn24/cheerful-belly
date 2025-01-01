@@ -16,6 +16,31 @@ class SchedulesController < ApplicationController
     end
   end
 
+  def show; end
+
+  def edit
+    @schedule = current_user.schedules.find(params[:id])
+  end
+
+  def update
+    @schedule = current_user.schedules.find(params[:id])
+    if @schedule.update!(schedule_params)
+      redirect_to user_schedules_path(current_user), notice: "スケジュールを更新しました"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @schedule = current_user.schedules.find(params[:id])
+    @schedule.destroy
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to user_schedules_path(current_user), notice: "スケジュールを削除しました" }
+    end
+  end
+  
   private
 
   def schedule_params
