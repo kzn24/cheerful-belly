@@ -40,7 +40,7 @@ class SchedulesController < ApplicationController
       format.html { redirect_to user_schedules_path(current_user), notice: "スケジュールを削除しました" }
     end
   end
-  
+
   private
 
   def schedule_params
