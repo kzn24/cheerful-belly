@@ -1,3 +1,4 @@
+<%= render 'shared/botton' %>
 <div class="overflow-x-auto">
   <table class="table">
     <thead>
@@ -10,7 +11,7 @@
 
     <tbody>
       <% @schedules.each do |schedule| %>
-        <tr>
+        <tr id="<%= dom_id(schedule) %>">
           <td><%= schedule.start_date_ja %></td>
           <td><%= schedule.end_date_ja %></td>
           <td>
@@ -20,6 +21,10 @@
               <div class="badge bg-leaf-500 text-zinc-50"><%= schedule.supplement.supplement_name %></div>
             <% end %>
           </td>
+          <td>
+            <%= link_to "編集", edit_user_schedule_path(current_user, schedule) %>
+            <%= link_to "削除", user_schedule_path(current_user, schedule), data: { turbo_method: :delete, turbo_confirm: "#{schedule.drug.present? ? schedule.drug.drug_name : schedule.supplement.supplement_name}を削除しますか？" } %>
+            </td>
         </tr>
       <% end %>
     </tbody>
