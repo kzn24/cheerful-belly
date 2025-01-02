@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :supplements, dependent: :destroy
   has_many :symptoms, dependent: :destroy
   has_many :schedules, dependent: :destroy
+  has_many :records, dependent: :destroy
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
