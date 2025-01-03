@@ -1,0 +1,59 @@
+<div class="flex items-start justify-center h-screen">
+  <div class="card card-compact bg-base-100 w-96 shadow-xl">
+    <div class="card-body text-center">
+      <%= form_with model: @record, url: user_records_path(current_user), local: true do |f| %>
+        <div class="mb-10">
+          <%= f.date_select :record_date %>の記録
+        </div>
+
+        <div class="divider">排  便</div>
+        <div class="rating">
+          <%= f.label :poop_rating, "評価しない", for: "poop_rating_0" %>
+          <%= f.radio_button :poop_rating, 0, class: "mask mask-star-2 bg-gray-400 mr-5", id: "poop_rating_0", checked: true %>
+          <%= f.radio_button :poop_rating, 1, class: "mask mask-star-2 bg-ginkgo-500", id: "poop_rating_1" %>
+          <%= f.radio_button :poop_rating, 2, class: "mask mask-star-2 bg-ginkgo-500", id: "poop_rating_2" %>
+          <%= f.radio_button :poop_rating, 3, class: "mask mask-star-2 bg-ginkgo-500", id: "poop_rating_3" %>
+          <%= f.radio_button :poop_rating, 4, class: "mask mask-star-2 bg-ginkgo-500", id: "poop_rating_4" %>
+          <%= f.radio_button :poop_rating, 5, class: "mask mask-star-2 bg-ginkgo-500", id: "poop_rating_5" %>
+        </div>
+
+        <div class="divider">消化器官</div>
+        <div class="rating">
+          <%= f.label :belly_rating, "評価しない", for: "belly_rating_0" %>
+          <%= f.radio_button :belly_rating, 0, class: "mask mask-star-2 bg-gray-400 mr-5", id: "belly_rating_0", checked: true %>
+          <%= f.radio_button :belly_rating, 1, class: "mask mask-star-2 bg-ginkgo-500", id: "belly_rating_1" %>
+          <%= f.radio_button :belly_rating, 2, class: "mask mask-star-2 bg-ginkgo-500", id: "belly_rating_2" %>
+          <%= f.radio_button :belly_rating, 3, class: "mask mask-star-2 bg-ginkgo-500", id: "belly_rating_3" %>
+          <%= f.radio_button :belly_rating, 4, class: "mask mask-star-2 bg-ginkgo-500", id: "belly_rating_4" %>
+          <%= f.radio_button :belly_rating, 5, class: "mask mask-star-2 bg-ginkgo-500", id: "belly_rating_5" %>
+        </div>
+
+        <div class="divider">食  事</div>
+        <div class="rating">
+          <%= f.label :meal_rating, "評価しない", for: "meal_rating_0" %>
+          <%= f.radio_button :meal_rating, 0, class: "mask mask-star-2 bg-gray-400 mr-5", id: "meal_rating_0", checked: true %>
+          <%= f.radio_button :meal_rating, 1, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_1" %>
+          <%= f.radio_button :meal_rating, 2, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_2" %>
+          <%= f.radio_button :meal_rating, 3, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_3" %>
+          <%= f.radio_button :meal_rating, 4, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_4" %>
+          <%= f.radio_button :meal_rating, 5, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_5" %>
+        </div>
+
+        <div class="divider">体  調</div>
+        <div class="rating">
+          <%= f.label :condition_rating, "評価しない", for: "condition_rating_0" %>
+          <%= f.radio_button :condition_rating, 0, class: "mask mask-star-2 bg-gray-400 mr-5", id: "condition_rating_0", checked: true %>
+          <%= f.radio_button :condition_rating, 1, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_1" %>
+          <%= f.radio_button :condition_rating, 2, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_2" %>
+          <%= f.radio_button :condition_rating, 3, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_3" %>
+          <%= f.radio_button :condition_rating, 4, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_4" %>
+          <%= f.radio_button :condition_rating, 5, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_5" %>
+        </div>
+
+        <div class="card-actions justify-center mt-5">
+          <%= f.submit "登録", class: "btn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
