@@ -35,6 +35,6 @@ module Myapp
 
     # 日本時間に設定
     config.time_zone = "Tokyo"
-    config.active_record.default_timezone = :local
+    config.active_record.default_timezone = :utc
   end
 end

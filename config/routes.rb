@@ -18,10 +18,11 @@ Rails.application.routes.draw do
   get "home/index", to: "home#index", as: "home_index" # ログイン失敗後トップページに遷移
 
   resources :users do
-    resources :drug_supplement_lists, only: [ :index, :create ]
-    resources :drugs, only: [ :edit, :update, :destroy ]
-    resources :supplements, only: [ :edit, :update, :destroy ]
-    resources :symptoms, only: [ :index, :create, :edit, :update, :destroy ]
+    resources :drug_supplement_lists, only: %i[ index create ]
+    resources :drugs, only: %i[ edit update destroy ]
+    resources :supplements, only: %i[ edit update destroy ]
+    resources :symptoms, only: %i[ index create edit update destroy ]
     resources :schedules
+    resources :records, only: %i[ new create create edit update destroy ]
   end
 end

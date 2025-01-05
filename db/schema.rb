@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_27_084030) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_02_074525) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_27_084030) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_drugs_on_user_id"
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "record_date", null: false
+    t.integer "condition_rating", default: 0, null: false
+    t.integer "belly_rating", default: 0, null: false
+    t.integer "meal_rating", default: 0, null: false
+    t.integer "poop_rating", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_records_on_user_id"
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -70,6 +82,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_27_084030) do
   end
 
   add_foreign_key "drugs", "users"
+  add_foreign_key "records", "users"
   add_foreign_key "schedules", "drugs"
   add_foreign_key "schedules", "supplements"
   add_foreign_key "schedules", "users"

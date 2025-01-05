@@ -1,5 +1,32 @@
 <%= render 'shared/botton' %>
 
-<button class="btn">
-  <%= link_to '予定一覧へ', user_schedules_path(current_user) %>
-</button>
+<div class="flex justify-center w-full px-4">
+  <button class="btn bg-base-100 shadow-md mb-44 w-full h-auto">
+    <%= link_to '予定一覧へ', user_schedules_path(current_user) %>
+  </button>
+</div>
+
+<div class="divider"></div>
+
+<span class="badge badge-sm bg-blue-500 ml-5 mb-3">体調</span>
+<span class="badge badge-sm bg-blue-500 ml-2 mb-3">消化器官</span>
+<span class="badge badge-sm bg-blue-500 ml-2 mb-3">食事</span>
+<span class="badge badge-sm bg-blue-500 ml-2 mb-3">排便</span>
+
+<div class="overflow-x-auto">
+  <%= line_chart [
+    { name: "体調", data: @condition_rating_data },
+    { name: "消化器官", data: @belly_rating_data },
+    { name: "食事", data: @meal_rating_data },
+    { name: "排便", data: @poop_rating_data }
+  ], min: 1, max: 5, discrete: true, colors: ['#cd7f99', '#a1be95', '#e2dfa2', '#8b6646'], width: '1500px', height: '250px', legend: false %>
+</div>
+
+<div class="flex justify-center w-full px-4 mt-10">
+  <div class="card card-compact bg-neutral-100 w-full h-auto shadow-xl">
+    <div class="card-body text-center">
+
+    </div>
+  </div>
+</div>
+
