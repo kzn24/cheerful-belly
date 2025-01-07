@@ -1,44 +1,56 @@
-<%= render 'shared/botton' %>
-<h1>薬とサプリのリスト</h1>
+<p class="text-lg ml-6">お薬とサプリメントの管理</p>
+<div class="divider"></div>
 <br>
 <br>
 <%= form_with model: @drug_supplement_form, url: user_drug_supplement_lists_path(current_user), method: :post, local: true do |f| %>
   <div>
     <%= f.label :drug_name, "お薬を新しく追加する" %><br>
-    <%= f.text_field :drug_name, placeholder: "薬名をカンマ(,)区切りで複数登録できます。" %><br>
+    <%= f.text_field :drug_name, class: "textarea textarea-bordered textarea-md w-full max-w-xs", placeholder: "薬名をカンマ(,)区切りで複数登録できます。" %><br>
   </div>
   <br>
   <div>
     <%= f.label :supplement_name, "サプリメントを追加する" %><br>
-    <%= f.text_field :supplement_name, placeholder: "サプリ名をカンマ(,)区切りで複数登録できます。" %><br>
+    <%= f.text_field :supplement_name, class: "textarea textarea-bordered textarea-md w-full max-w-xs", placeholder: "サプリ名をカンマ(,)区切りで複数登録できます。" %><br>
   </div>
   <br>
   <div>
-    <%= f.submit "登録" %>
+    <%= f.submit "登録", class: "btn" %>
   </div>
 <% end %>
-
 <br>
 <br>
+<div class="card bg-base-100 w-96 shadow-md mt-10">
+  <div class="card-body">
+    <p class="text-lg mb-4">お薬リスト</p>
+      <% @drugs.each do |drug| %>
+        <%= turbo_frame_tag dom_id(drug) do %>
+          <div class="flex justify-between items-center">
+            <div><%= drug.drug_name %></div>
+            <div>
+              <%= link_to "編集", edit_user_drug_path(user_id: current_user.id, id: drug.id) %>
+              <%= link_to "削除", user_drug_path(user_id: current_user.id, id: drug.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+            </div>
+          </div>
+          <div class="border-t border-gray-300 my-3"></div>
+        <% end %>
+      <% end %>
+  </div>
+</div>
 
-<h2>お薬のリスト</h2>
-<% @drugs.each do |drug| %>
-  <%= turbo_frame_tag dom_id(drug) do %>
-    <div>
-      <%= drug.drug_name %>
-      <%= link_to "編集", edit_user_drug_path(user_id: current_user.id, id: drug.id) %>
-      <%= link_to "削除", user_drug_path(user_id: current_user.id, id: drug.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
-    </div>
-  <% end %>
-<% end %>
-
-<h2>サプリメントのリスト</h2>
-<% @supplements.each do |supplement| %>
-  <%= turbo_frame_tag dom_id(supplement) do %>
-    <div>
-      <%= supplement.supplement_name %>
-      <%= link_to "編集", edit_user_supplement_path(user_id: current_user.id, id: supplement.id) %>
-      <%= link_to "削除", user_supplement_path(user_id: current_user.id, id: supplement.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
-    </div>
-  <% end %>
-<% end %>
+<div class="card bg-base-100 w-96 shadow-md mt-8">
+  <div class="card-body">
+    <p class="text-lg mb-4">サプリメントリスト</p>
+      <% @supplements.each do |supplement| %>
+        <%= turbo_frame_tag dom_id(supplement) do %>
+          <div class="flex justify-between items-center">
+            <div><%= supplement.supplement_name %></div>
+            <div>
+              <%= link_to "編集", edit_user_supplement_path(user_id: current_user.id, id: supplement.id) %>
+              <%= link_to "削除", user_supplement_path(user_id: current_user.id, id: supplement.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+            </div>
+          </div>
+          <div class="border-t border-gray-300 my-3"></div>
+        <% end %>
+      <% end %>
+  </div>
+</div>

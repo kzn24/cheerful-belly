@@ -5,6 +5,7 @@ ja:
       drug: お薬
       supplement: サプリメント
       schedule: 予定
+      record: 記録
     attributes:
       drug:
         drug_name: お薬
@@ -15,8 +16,16 @@ ja:
       schedule:
         start_date: 開始日
         end_date: 終了日
+      record:
+        record_date: 記録日
+        condition_rating: 体調評価
+        belly_rating: 消化器官評価
+        meal_rating: 食事評価
+        poop_rating: 排便評価
+        food: 食べたもの
+        meal_memo: 食事メモ
+        diary: ひとこと日記
   attributes:
     id: ID
     created_at: 作成日時
     updated_at: 更新日時
-

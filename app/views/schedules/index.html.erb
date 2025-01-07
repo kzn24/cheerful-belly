@@ -1,9 +1,14 @@
-<%= render 'shared/botton' %>
+<div class="flex justify-between items-center">
+  <p class="text-lg ml-6">お薬とサプリメントのスケジュール</p>
+  <%= link_to "予定を立てる", new_user_schedule_path(current_user), class: "text-blue-500 hover:underline mr-6" %>
+</div>
+<div class="divider"></div>
 <div class="overflow-x-auto">
   <table class="table">
     <thead>
       <tr>
         <th>開始日</th>
+        <td></td>
         <th>終了日</th>
         <th>お薬とサプリ</th>
       </tr>
@@ -13,6 +18,7 @@
       <% @schedules.each do |schedule| %>
         <tr id="<%= dom_id(schedule) %>">
           <td><%= schedule.start_date_ja %></td>
+          <td>〜</td>
           <td><%= schedule.end_date_ja %></td>
           <td>
             <% if schedule.drug.present? %>

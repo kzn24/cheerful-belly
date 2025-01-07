@@ -1,17 +1,47 @@
 <%= render 'shared/botton' %>
 
-<div class="flex justify-center w-full px-4">
-  <button class="btn bg-base-100 shadow-md mb-44 w-full h-auto">
-    <%= link_to '予定一覧へ', user_schedules_path(current_user) %>
-  </button>
+<div class="flex justify-center w-full px-10 mb-40">
+  <div class="card card-compact bg-base-100 w-full rounded-sm shadow-md h-auto">
+    <div class="card-body">
+      <p class="underline underline-offset-4 mb-2">いま服用しているお薬とサプリメント</p>
+      <% @active_schedules.each do |schedule| %>
+        <% days_since_start = (Date.today - schedule.start_date).to_i + 1 %>
+        <% days_until_end = (schedule.end_date - Date.today).to_i %>
+        <% name = schedule.drug&.drug_name || schedule.supplement&.supplement_name %>
+        <% if name.present? %>
+          <p>
+            ・<%= name %>を開始してから<span class="font-bold text-base"><%= days_since_start %></span>日目。残りあと<span class="font-bold text-base"><%= days_until_end %></span>日。
+          </p>
+        <% end %>
+      <% end %>
+      <br>
+      <p class="underline underline-offset-4 mb-2">服用を控えているお薬とサプリメント</p>
+      <% @upcoming_schedules.each do |schedule| %>
+        <% days_until_start = (schedule.start_date - Date.today).to_i %>
+        <% name = schedule.drug&.drug_name || schedule.supplement&.supplement_name %>
+        <% if name.present? %>
+          <p>
+            ・<%= name %>が始まるまであと<span class="font-bold text-base"><%= days_until_start %></span>日。
+          </p>
+        <% end %>
+      <% end %>
+
+      <div class="card-actions justify-end">
+        <button class="btn btn-ghost">
+          <%= link_to '＞', user_schedules_path(current_user) %>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
 
+<p class="text-lg ml-6">記 録</p>
 <div class="divider"></div>
 
-<span class="badge badge-sm bg-blue-500 ml-5 mb-3">体調</span>
-<span class="badge badge-sm bg-blue-500 ml-2 mb-3">消化器官</span>
-<span class="badge badge-sm bg-blue-500 ml-2 mb-3">食事</span>
-<span class="badge badge-sm bg-blue-500 ml-2 mb-3">排便</span>
+<span class="badge badge-sm bg-condition text-zinc-50 ml-5 mb-3">体 調</span>
+<span class="badge badge-sm bg-belly text-zinc-50 ml-2 mb-3">消化器官</span>
+<span class="badge badge-sm bg-ginkgo-900 text-zinc-50 ml-2 mb-3">食 事</span>
+<span class="badge badge-sm bg-poop text-zinc-50 ml-2 mb-3">排 便</span>
 
 <div class="overflow-x-auto">
   <%= line_chart [
@@ -22,11 +52,4 @@
   ], min: 1, max: 5, discrete: true, colors: ['#cd7f99', '#a1be95', '#e2dfa2', '#8b6646'], width: '1500px', height: '250px', legend: false %>
 </div>
 
-<div class="flex justify-center w-full px-4 mt-10">
-  <div class="card card-compact bg-neutral-100 w-full h-auto shadow-xl">
-    <div class="card-body text-center">
-
-    </div>
-  </div>
-</div>
-
+<%= render 'records' %>

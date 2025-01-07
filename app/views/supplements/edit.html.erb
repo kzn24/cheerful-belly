@@ -1,19 +1,26 @@
-<!-- サプリ編集フォーム-->
-<%= turbo_frame_tag dom_id(@supplement) do %>
-  <%= form_with model: @supplement, url: user_supplement_path(user_id: current_user.id, id: @supplement.id) do |f| %>
-    <div>
-      <% if @supplement.errors.any? %>
-        <ul>
-          <% @supplement.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+<!-- サプリメント編集フォーム-->
+<div class="card bg-base-100 w-96 shadow-xl">
+  <div class="card-body">
+    <%= turbo_frame_tag dom_id(@supplement) do %>
+      <%= form_with model: @supplement, url: user_supplement_path(user_id: current_user.id, id: @supplement.id) do |f| %>
+        <div>
+          <% if @supplement.errors.any? %>
+            <ul class="text-red-500">
+              <% @supplement.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
           <% end %>
-        </ul>
+        </div>
+        <div class="flex justify-between items-center">
+          <div><%= f.text_field :supplement_name, skip_label: true %></div>
+          <div>
+            <%= f.submit "保存" %>
+            <%= link_to "キャンセル", user_drug_supplement_lists_path(current_user) %>
+          </div>
+        </div>
+        <div class="border-t border-gray-300 my-3"></div>
       <% end %>
-    </div>
-    <div>
-      <%= f.text_field :supplement_name, skip_label: true %>
-      <%= f.submit "保存" %>
-      <%= link_to "キャンセル", user_drug_supplement_lists_path(current_user) %>
-    </div>
-  <% end %>
-<% end %>
+    <% end %>
+  </div>
+</div>
