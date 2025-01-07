@@ -36,7 +36,6 @@ module.exports = {
           500: "#e2dfa2",
           900: "#b4ad1e",
         },
-        tomato: "#ed5752",
         sky: {
           100: "#f4f6f9",
           500: "#92aac7",
@@ -44,6 +43,28 @@ module.exports = {
         leaf: {
           100: "#f5f8f4",
           500: "#a1be95",
+        },
+        tomato: "#ed5752",
+        condition: "#cd7f99",
+        belly: "#a1be95",
+        meal: "#e2dfa2",
+        poop: "#8b6646",
+      },
+
+      animation: {
+        'fuwafuwa': 'fuwafuwa 3s ease-in-out infinite alternate',
+      },
+      keyframes: {
+        fuwafuwa: {
+          '0%': {
+            transform: 'translate(0, 0) rotate(-7deg)',
+          },
+          '50%': {
+            transform: 'translate(0, -7px) rotate(0deg)',
+          },
+          '100%': {
+            transform: 'translate(0, 0) rotate(7deg)',
+          },
         },
       },
     },

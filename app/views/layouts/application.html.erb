@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Myapp" %></title>
+    <title><%= content_for(:title) || "Cheeful Belly" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1"> <!-- ページの表示をレスポンシブ対応 -->
     <meta name="mobile-web-app-capable" content="yes"> <!-- Appleデバイスでウェブページをフルスクリーン表示可能にする -->
     <%= csrf_meta_tags %>
@@ -22,10 +22,12 @@
       <%= render 'shared/header' %>
     <% end %>
 
-    <p class="notice bg-transparent border-none"><%= notice %></p>
-    <p class="alert bg-transparent border-none"><%= alert %></p>
+    <div class="w-full h-screen mt-20">
+      <p class="notice bg-transparent border-none"><%= notice %></p>
+      <p class="alert bg-transparent border-none"><%= alert %></p>
 
-    <%= yield %>
+      <%= yield %>
+    </div>
 
     <%= render 'shared/footer' %>
   </body>

@@ -1,13 +1,1 @@
-<div class="fixed bottom-4 right-4">
-  <div class="dropdown dropdown-top dropdown-end">
-    <div tabindex="0" role="button" class="btn m-1 rounded-full w-12 h-12 flex items-center justify-center text-white bg-tomato hover:bg-rose-800" >
-      +
-    </div>
-    <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-      <li>
-        <%= link_to "お薬とサプリの予定", new_user_schedule_path(current_user) %>
-      </li>
-      <li><%= link_to "今日の記録をつける", new_user_record_path(current_user) %></li>
-    </ul>
-  </div>
-</div>
+<%= link_to image_tag('feather.svg', class: 'animate-fuwafuwa w-10 h-10 mt-4'), new_user_record_path(current_user), class: 'fixed bottom-8 right-8 z-50' %>

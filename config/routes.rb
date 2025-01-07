@@ -23,6 +23,6 @@ Rails.application.routes.draw do
     resources :supplements, only: %i[ edit update destroy ]
     resources :symptoms, only: %i[ index create edit update destroy ]
     resources :schedules
-    resources :records, only: %i[ new create create edit update destroy ]
+    resources :records, only: %i[ new create show edit update destroy ]
   end
 end
