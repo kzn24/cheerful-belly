@@ -10,8 +10,6 @@ class DrugSupplementForm
   # バリデーション
   validates :drug_name, presence: true, if: -> { supplement_name.blank? } # サプリ名が未入力の場合、薬名が必須
   validates :supplement_name, presence: true, if: -> { drug_name.blank? } # 薬名が未入力の場合サプリ名が必須
-  # どちらか一方が入力されていれば保存できる
-  validates :drug_name, :supplement_name, presence: true, if: -> { drug_name.blank? && supplement_name.blank? }
 
   def save
     return false unless valid?
@@ -29,14 +27,14 @@ class DrugSupplementForm
 
   def create_drugs
     return if drug_name.nil?
-    drug_name.split(",").map(&:strip).each do |name|
+    drug_name.split("、").map(&:strip).each do |name|
       Drug.create!(drug_name: name, user_id: user_id)
     end
   end
 
   def create_supplements
     return if supplement_name.nil?
-    supplement_name.split(",").map(&:strip).each do |name|
+    supplement_name.split("、").map(&:strip).each do |name|
       Supplement.create!(supplement_name: name, user_id: user_id)
     end
   end

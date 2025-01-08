@@ -1,23 +1,22 @@
-<header class="bg-ginkgo-500/10 backdrop-blur-md w-full h-20 rounded-bl-[var(--curve-value)] fixed top-0 left-0 z-50 shadow-sm">
+<header class="bg-ginkgo-500/10 backdrop-blur-md w-full h-20 rounded-bl-[50px] fixed top-0 left-0 z-50 shadow-sm">
   <div class="container mx-auto p-3 flex items-center justify-between">
     <!-- 左側コンテンツ（例として「ロゴ」を配置） -->
-    <div class="logo">
+    <a href="<%= user_main_index_path(current_user) %>" class="logo">
       <span class="text-ginkgo-900 text-lg font-bold">Cheeful Belly</span>
-    </div>
-
+    </a>
     <!-- ドロップダウンメニュー -->
     <div class="dropdown dropdown-end">
-      <div tabindex="0" role="button" class="btn m-1">Menu</div>
+      <div tabindex="0" role="button" class="btn btn-link text-zinc-500 no-underline">Menu</div>
       <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
         <% if user_signed_in? %>
-          <li>
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          </li>
           <li>
             <%= link_to "お薬とサプリ", user_drug_supplement_lists_path(current_user) %>
           </li>
           <li>
             <%= link_to "症状リスト", user_symptoms_path(current_user) %>
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
           </li>
         <% end %>
       </ul>

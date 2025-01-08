@@ -5,7 +5,7 @@ class Record < ApplicationRecord
   validates :food, :meal_memo, length: { maximum: 255 }
   validates :record_date, presence: true
 
-  validate :unique_record_date
+  validate :unique_record_date, on: :create
 
   def unique_record_date
     existing_record = Record.where(record_date: record_date, user_id: user_id).first

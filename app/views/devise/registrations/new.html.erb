@@ -1,60 +1,73 @@
 <!-- サインアップページ -->
-<h2>会員登録</h2>
-*が付いている項目は必須です。
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<p class="text-lg font-semibold ml-4 mt-3">会員登録</p>
+<div class="border-t border-gray-900 mb-12 mt-1"></div>
 
-  <div class="field">
-    <%= f.label :last_name, "姓*" %><br>
-    <%= f.text_field :last_name %>
-  </div>
+<p class="text-sm mb-6 ml-4"> 
+  <span class="text-ginkgo-900">*</span> が付いている項目は必須です。
+</p>
 
-  <div>
-    <%= f.label :first_name, "名*" %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <br>
-  <div>
-    <%= f.label :last_name_kana, "姓(半角ｶﾀｶﾅ)*" %><br>
-    <%= f.text_field :last_name_kana %>
-  </div>
+<div class="flex flex-col w-full px-4">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-6" }) do |f| %>
+    <div class="text-red-500 text-xs text-left mb-8">
+      <%= render "devise/shared/error_messages", resource: resource %>
+    </div>
 
-  <div>
-    <%= f.label :first_name_kana, "名(半角ｶﾀｶﾅ)*" %><br>
-    <%= f.text_field :first_name_kana %>
-  </div>
+    <div class="flex space-x-4">
+      <div class="w-1/2">
+        <%= f.label :last_name, raw("姓 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mb-1 text-left" %>
+        <%= f.text_field :last_name, class: "input input-bordered rounded-sm w-full" %>
+      </div>
+      <div class="w-1/2">
+        <%= f.label :first_name, raw("名 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mb-1 text-left" %>
+        <%= f.text_field :first_name, class: "input input-bordered rounded-sm w-full" %>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :gender, "性別" %><br>
-    <%= f.select :gender, options_for_select([['男性', 'man'], ['女性', 'woman']], selected: nil), { prompt: '選択してください' } %>
-  </div>
+    <div class="flex space-x-4">
+      <div class="w-1/2">
+        <%= f.label :last_name_kana, raw("姓(半角ｶﾀｶﾅ) <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mb-1 text-left" %>
+        <%= f.text_field :last_name_kana, class: "input input-bordered rounded-sm w-full" %>
+      </div>
+      <div class="w-1/2">
+        <%= f.label :first_name_kana, raw("名(半角ｶﾀｶﾅ) <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mb-1 text-left" %>
+        <%= f.text_field :first_name_kana, class: "input input-bordered rounded-sm w-full" %>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :birthdate, "生年月日" %><br>
-    <%= f.date_select :birthdate, start_year: 1920, end_year:2120, use_month_numbers: true, include_blank: true %>
-  </div>
+    <div>
+      <%= f.label :gender, raw("性別 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mt-12 mb-1 text-left" %>
+      <%= f.select :gender, options_for_select([['男性', 'man'], ['女性', 'woman']], selected: nil), { prompt: '選択してください' }, class: "select select-bordered w-full rounded-sm" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email, "メールアドレス*" %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div>
+      <%= f.label :birthdate, "生年月日", class: "text-xs block mt-12 mb-1 text-left" %>
+      <%= f.date_select :birthdate, start_year: 1920, end_year: 2120, use_month_numbers: true, include_blank: true, class: "w-full" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password, "パスワード*" %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %>文字以上で入力してください)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div>
+      <%= f.label :email, raw("メールアドレス <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mt-12 mb-1 text-left" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered rounded-sm w-full" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "パスワード確認*" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div>
+      <%= f.label :password, raw("パスワード <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mt-12 mb-1 text-left" %>
+      <% if @minimum_password_length %>
+        <em class="text-xs block mb-1">(<%= @minimum_password_length %>文字以上で入力してください)</em>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered rounded-sm w-full" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "登録" %>
-  </div>
-<% end %>
+    <div>
+      <%= f.label :password_confirmation, raw("パスワード確認 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mb-1 text-left" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered rounded-sm w-full" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="text-center">
+      <%= f.submit "登  録", class: "btn btn-sm glass w-full rounded-sm mt-10" %>
+    </div>
+
+    <div class="text-center">
+      <%= link_to "キャンセル", root_path %>
+    </div>
+  <% end %>
+</div>

@@ -10,11 +10,11 @@ class Schedule < ApplicationRecord
   validate :one_of_drug_or_supplement
 
   def start_date_ja
-    start_date.strftime("%Y年 %-m月 %-d日（#{japanese_weekday(start_date) }）")
+    start_date.strftime("%Y年 %-m/%-d(#{japanese_weekday(end_date) })")
   end
 
   def end_date_ja
-    end_date.strftime("%Y年 %-m月 %-d日（#{japanese_weekday(end_date) }）")
+    end_date.strftime("%Y年 %-m/%-d(#{japanese_weekday(end_date) })")
   end
 
   private

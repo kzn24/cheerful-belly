@@ -1,31 +1,36 @@
-<!-- 症状リスト一覧ページ -->
+<p class="text-lg ml-4 mt-20">症状リスト</p>
+<div class="border-t border-gray-900 mb-12 mt-1"></div>
 
-<%= form_with model: @symptom, url: user_symptoms_path(current_user), local: true do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div>
-    <%= f.label :symptom_name, "症状を新しく追加する" %><br>
-    <%= f.text_field :symptom_name, placeholder: "症状をカンマ(,)区切りで複数登録できます。" %><br>
-  </div>
-  <br>
-  <div>
-    <%= f.submit "登録" %>
-  </div>
-<% end %>
-
-<br>
-<br>
-<br>
-
-<% content_for :title, "Symptoms" %>
-
-<h1>症状リスト</h1>
-<br>
-<% @symptoms.each do |symptom| %>
-  <%= turbo_frame_tag dom_id(symptom) do %>
+<div class="flex flex-col items-center w-full">
+  <p class="text-xs mx-4 mb-12">記録を書く際に使用する症状の項目を登録できます。</p>
+  <%= form_with model: @symptom, url: user_symptoms_path(current_user), local: true do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
     <div>
-      <%= symptom.symptom_name %>
-      <%= link_to "編集", edit_user_symptom_path(user_id: current_user.id, id: symptom.id) %>
-      <%= link_to "削除", user_symptom_path(user_id: current_user.id, id: symptom.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+      <%= f.label :symptom_name, "症状を新しく追加する", class: "text-xs" %><br>
+      <%= f.text_field :symptom_name, class: "textarea textarea-bordered textarea-md rounded-sm w-80 mb-7", placeholder: "読点(、)区切りで複数登録可。" %>
+    </div>
+
+    <div class="flex justify-end">
+      <%= f.submit "登　録", class: "btn btn-sm glass" %>
     </div>
   <% end %>
-<% end %>
+
+
+  <div class="card bg-stone-50 w-80 rounded-sm shadow-md mt-16 mb-10">
+    <div class="card-body">
+      <p class="text-lg mb-5">Symptoms</p>
+      <% @symptoms.each do |symptom| %>
+        <%= turbo_frame_tag dom_id(symptom) do %>
+          <div class="flex justify-between items-center">
+            <div><%= symptom.symptom_name %></div>
+            <div>
+              <%= link_to "編集", edit_user_symptom_path(user_id: current_user.id, id: symptom.id) %>
+              <%= link_to "削除", user_symptom_path(user_id: current_user.id, id: symptom.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+            </div>
+          </div>
+          <div class="border-t border-gray-300 my-3"></div>
+        <% end %>
+      <% end %>
+    </div>
+  <div>
+</div>

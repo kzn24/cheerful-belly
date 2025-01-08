@@ -1,33 +1,32 @@
-<div class="card card-compact bg-neutral-100 w-80 flex-shrink-0 h-auto rounded-md shadow-xl">
-<div class="card-body text-center">
-  <ul>
-    <li class="flex justify-between items-center text-left">
-      <span><%= @record.record_date.strftime("%Y年%m月%d日") %>の記録</span>
-      <!-- <div class="dropdown dropdown-end">
-        <div tabindex="0" role="button" class="btn btn-xs m-1">Menu</div>
-        <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-32 p-2 shadow">
-          <li><%= link_to "編集", edit_user_record_path(user_id: current_user.id, id: @record.id) %></li>
-          <li><%= link_to "削除", user_record_path(user_id: current_user.id, id: @record.id), method: :delete, data: { turbo_confirm: "本当に削除しますか？" } %></li>
-        </ul>
-      </div> -->
-    </li>
-    <div class="divider"></div>
-    <li>服用済みお薬・サプリのデータ（未実装）</li>
-    <br>
-    <br>
-    <div class="divider">ひとこと日記</div>
-    <br>
-    <li><%= @record.diary %></li>
-    <div class="card card-compact bg-neutral-200 w-full h-auto px-5 py-3.5 mt-10 text-left">
-      <li class="text-lg font-bold mb-5">食事</li>
-      <li><%= @record.food %></li>
-      <div class="divider"></div>
-      <li><%= @record.meal_memo %></li>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-  </ul>
-</div>
+<p class="text-lg font-semibold ml-4 mt-20"><%= @record.record_date.strftime("%Y年%m月%d日") %>の記録</p>
+<div class="border-t border-gray-900 mb-12 mt-1"></div>
+
+<div class="flex flex-col items-center w-full">
+  <div class="card card-compact bg-stone-50 w-80 flex-shrink-0 h-auto mx-2.5 mb-12 pb-5 rounded-md shadow-xl">
+  <div class="card-body text-center">
+    <ul>
+        <li class="flex justify-between items-center text-left">
+          <!-- <div class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-xs bg-base-100 m-1">Menu</div>
+            <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-32 p-2 shadow">
+              <li><%= link_to "編集", edit_user_record_path(user_id: current_user.id, id: @record.id) %></li>
+              <li><%= link_to "削除", user_record_path(user_id: current_user.id, id: @record.id), method: :delete, data: { turbo_confirm: "本当に削除しますか？" } %></li>
+          </ul>
+          </div> -->
+        </li>
+
+        <li class="my-12">服用済みお薬・サプリのデータ（未実装）</li>
+
+        <div class="divider">ひとこと日記</div>
+        <li class="my-12"><%= @record.diary %></li>
+
+        <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-10 rounded-md text-left">
+          <li class="font-bold mb-5">食事</li>
+          <li><%= @record.food %></li>
+          <div class="border-t border-gray-300 my-5"></div>
+          <li><%= @record.meal_memo %></li>
+        </div>
+    </ul>
+  </div>
+  </div>
 </div>
