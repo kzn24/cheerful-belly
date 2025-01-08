@@ -14,10 +14,8 @@ Rails.application.routes.draw do
     get "/users/sign_out" => "devise/sessions#destroy"
   end
 
-  get "main/index", to: "main#index", as: "main_index" # トップからログインした際のルーティング
-  get "home/index", to: "home#index", as: "home_index" # ログイン失敗後トップページに遷移
-
   resources :users do
+    resources :main, only: %i[ index ]
     resources :drug_supplement_lists, only: %i[ index create ]
     resources :drugs, only: %i[ edit update destroy ]
     resources :supplements, only: %i[ edit update destroy ]

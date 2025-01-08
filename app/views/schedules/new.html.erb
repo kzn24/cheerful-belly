@@ -1,36 +1,32 @@
-<%= form_with model: @schedule, url: user_schedules_path(current_user), local: true do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="card place-items-center">
-    服用期間
-    <table>
-      <tr>
-        <th><%= f.label :start_date, "開始日" %></th>
-        <td><%= f.date_field :start_date %></td>
-      </tr>
+<p class="text-lg font-semibold ml-4 mt-20">服用スケジュールを立てる</p>
+<div class="border-t border-gray-900 mb-12 mt-1"></div>
 
-      <tr>
-        <th><%= f.label :end_date, "終了日" %></th>
-        <td><%= f.date_field :end_date %></td>
-      </tr>
-    </table>
-  </div>
+<div class="flex flex-col items-center w-full">
+  <p class="text-xs mx-4 mb-12">服用期間</p>
 
-  <div class="divider"></div>
-
-  <div class="card place-items-center">
-    どちらか一方をお選びください。
-
-    <table>
-      <tr>
-        <td><%= f.collection_select :drug_id, Drug.all, :id, :drug_name, { include_blank: "お薬" }, { class: "select select-bordered select-sm w-full max-w-xs border-sky-500" } %></td>
-        <td><%= f.collection_select :supplement_id, Supplement.all, :id, :supplement_name, { include_blank: "サプリメント" }, { class: "select select-bordered select-sm w-full max-w-xs border-leaf-500 mx-3" } %></td>
-      </tr>
-    </table>
+  <%= form_with model: @schedule, url: user_schedules_path(current_user), local: true do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div>
+      <%= f.label :start_date, "開始日", class: "text-xs mr-8" %>
+      <%= f.date_field :start_date, class: "mb-5" %>
+    </div>
 
     <div>
-      <ul>
-        <li><%= f.submit "登録" %></li>
-      </ul>
+      <%= f.label :end_date, "終了日", class: "text-xs mr-8" %>
+      <%= f.date_field :end_date, class: "mb-5" %>
     </div>
-  </div>
-<% end %>
+
+    <div class="divider"></div>
+
+    <p class="text-xs mx-4 mt-12 mb-10">どちらか一方を選択してください。</p>
+
+    <div class="flex space-x-4">
+      <%= f.collection_select :drug_id, Drug.all, :id, :drug_name, { include_blank: "お薬" }, { class: "select select-bordered select-sm w-full max-w-xs border-sky-500 rounded-sm" } %>
+      <%= f.collection_select :supplement_id, Supplement.all, :id, :supplement_name, { include_blank: "サプリ" }, { class: "select select-bordered select-sm w-full max-w-xs border-leaf-500 rounded-sm" } %>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <%= f.submit "登　録", class: "btn btn-sm glass mt-12" %>
+    </div>
+  <% end %>
+</div>

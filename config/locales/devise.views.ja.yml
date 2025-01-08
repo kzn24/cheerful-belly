@@ -7,6 +7,11 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+        first_name: "名"
+        last_name: "姓"
+        first_name_kana: "名(半角ｶﾀｶﾅ)"
+        last_name_kana: "姓(半角ｶﾀｶﾅ)"
+        gender: "性別"
     models:
       user: "ユーザ"
   devise:

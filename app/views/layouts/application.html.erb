@@ -18,17 +18,23 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= render 'shared/header' %>
-    <% end %>
+    <div class="font-serif tracking-widest">
+      <% if user_signed_in? %>
+        <%= render 'shared/header' %>
+      <% end %>
 
-    <div class="w-full h-screen mt-20">
-      <p class="notice bg-transparent border-none"><%= notice %></p>
-      <p class="alert bg-transparent border-none"><%= alert %></p>
+      <div class="w-full h-screen">
+        <% if notice.present? %>
+          <div class="animate-notice fixed top-24 translate-x-1/2 right-6 sm:translate-x-0 z-30 w-fit max-w-[90%] sm:max-w-1/2 py-2 px-3 flex justify-center items-center bg-stone-50 shadow-md rounded">
+            <%= notice %>
+          </div>
+        <% end %>
+        <p class="alert bg-transparent border-none"><%= alert %></p>
 
-      <%= yield %>
+        <%= yield %>
+      </div>
+
+      <%= render 'shared/footer' %>
     </div>
-
-    <%= render 'shared/footer' %>
   </body>
 </html>

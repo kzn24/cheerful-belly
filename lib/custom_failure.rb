@@ -1,7 +1,7 @@
 # deviseでのログイン失敗時の処理カスタム
 class CustomFailure < Devise::FailureApp
   def redirect_url
-    home_index_url # ログイン失敗したらトップページにリダイレクト
+    root_url # ログイン失敗したらトップページにリダイレクト
   end
 
   def respond

@@ -7,7 +7,7 @@ class RecordsController < ApplicationController
     @record = current_user.records.new(record_params)
 
     if @record.save
-      redirect_to main_index_path, notice: "記録の登録ができました"
+      redirect_to user_main_index_path, notice: "記録の登録ができました"
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,7 +24,7 @@ class RecordsController < ApplicationController
   def update
     @record = current_user.records.find(params[:id])
     if @record.update(record_params)
-      redirect_to main_index_path, notice: "記録を更新しました"
+      redirect_to user_main_index_path, notice: "記録を更新しました"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to main_index_path, notice: "記録を削除しました" }
+      format.html { redirect_to user_main_index_path, notice: "記録を削除しました" }
     end
   end
 

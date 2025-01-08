@@ -10,10 +10,13 @@
         </ul>
       <% end %>
     </div>
-    <div>
-      <%= f.text_field :symptom_name, skip_label: true %>
-      <%= f.submit "保存" %>
-      <%= link_to "キャンセル", user_symptoms_path(current_user) %>
+    <div class="flex justify-between items-center">
+      <div><%= f.text_field :symptom_name, skip_label: true %></div>
+      <div>
+        <%= f.submit "保存" %>
+        <%= link_to "やめる", user_symptoms_path(current_user) %>
+      </div>
     </div>
+    <div class="border-t border-gray-300 my-3"></div>
   <% end %>
 <% end %>

@@ -52,8 +52,10 @@ module.exports = {
       },
 
       animation: {
-        'fuwafuwa': 'fuwafuwa 3s ease-in-out infinite alternate',
+        fuwafuwa: "fuwafuwa 3s ease-in-out infinite alternate",
+        notice: "notice 7.0s forwards",
       },
+
       keyframes: {
         fuwafuwa: {
           '0%': {
@@ -66,6 +68,13 @@ module.exports = {
             transform: 'translate(0, 0) rotate(7deg)',
           },
         },
+
+        notice: {
+          "0%": { transform: "translateX(180px)", opacity: 0 },
+          "20%": { transform: "translateX(0)", opacity: 1 },
+          "80%": { transform: "translateX(0)", opacity: 1 },
+          "100%": { transform: "translateX(180px)", opacity: 0 },
+        }
       },
     },
   },

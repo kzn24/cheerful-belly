@@ -20,13 +20,13 @@ class Users::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-  # ログイン後の遷移カスタム。views/main/index.html.erbへのパス
+  # ログイン後の遷移カスタム。
   def after_sign_in_path_for(resource)
-    main_index_path
+    user_main_index_path(resource.id)
   end
 
-  # ログアウト後の遷移カスタム。views/home/index.html.erbへのパス
+  # ログアウト後の遷移カスタム
   def after_sign_out_path_for(resource_or_scope)
-    home_index_path
+    root_path
   end
 end

@@ -1,14 +1,15 @@
-<div class="flex justify-between items-center">
-  <p class="text-lg ml-6">お薬とサプリメントのスケジュール</p>
-  <%= link_to "予定を立てる", new_user_schedule_path(current_user), class: "text-blue-500 hover:underline mr-6" %>
+<div class="flex justify-between items-center mt-20">
+  <p class="text-lg font-semibold ml-4">服用スケジュール</p>
+  <%= link_to "予定を立てる", new_user_schedule_path(current_user), class: "text-sm text-gray-500 hover:underline mr-6" %>
 </div>
-<div class="divider"></div>
-<div class="overflow-x-auto">
-  <table class="table">
+
+<div class="border-t border-gray-900 mb-16 mt-1"></div>
+
+<div class="flex justify-center w-full">
+  <table class="table ">
     <thead>
       <tr>
         <th>開始日</th>
-        <td></td>
         <th>終了日</th>
         <th>お薬とサプリ</th>
       </tr>
@@ -18,13 +19,12 @@
       <% @schedules.each do |schedule| %>
         <tr id="<%= dom_id(schedule) %>">
           <td><%= schedule.start_date_ja %></td>
-          <td>〜</td>
           <td><%= schedule.end_date_ja %></td>
           <td>
             <% if schedule.drug.present? %>
-              <div class="badge bg-sky-500 text-zinc-50"><%= schedule.drug.drug_name %></div>
+              <div class="badge badge-sm bg-sky-500 text-zinc-50 rounded-md p-2"><%= schedule.drug.drug_name %></div>
             <% elsif schedule.supplement.present? %>
-              <div class="badge bg-leaf-500 text-zinc-50"><%= schedule.supplement.supplement_name %></div>
+              <div class="badge badge-sm bg-leaf-500 text-zinc-50 rounded-md p-2"><%= schedule.supplement.supplement_name %></div>
             <% end %>
           </td>
           <td>

@@ -1,31 +1,36 @@
-<body class="bg-ginkgo-500 neutral-200 min-h-[100vh]">
-  <div class="flex justify-center">
-    <%= link_to '会員登録', new_user_registration_path, class: 'bg-ginkgo-900 text-white font-bold py-2 px-4 rounded hover:bg-blue-700' %>
+<body class="flex flex-col items-center justify-center bg-ginkgo-500/10 min-h-screen">
+  <div class="flex flex-col items-center">
+    <p class="text-3xl text-ginkgo-900 mt-12 mb-5">Cheerful Belly</p>
   </div>
-  <p class="text-center text-sm">すでに登録済みの方は以下からログイン</p>
-  <div class="flex justify-center">
-    <%= form_for(@resource, as: @resource_name, url: session_path(@resource_name)) do |f| %>
-      <div class="field">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+  <div class="flex flex-col items-center">
+    <%= link_to '会員登録', new_user_registration_path, class: 'bg-ginkgo-900 text-white font-bold py-2 px-4 mt-24 mb-12 rounded hover:bg-blue-700' %>
+  </div>
+  
+  <p class="text-center text-xs mb-6">すでに登録済みの方は以下からログイン</p>
+  
+  <div class="flex justify-center w-full max-w-xs">
+    <%= form_for(@resource, as: @resource_name, url: session_path(@resource_name), html: { class: "w-full" }) do |f| %>
+      <div class="mb-4">
+        <%= f.label :email, "メールアドレス", class: "text-xs block mb-2 text-left" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input input-bordered w-full rounded-sm" %>
       </div>
 
-      <div class="field">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "current-password" %>
+      <div class="mb-4">
+        <%= f.label :password, "パスワード", class: "text-xs block mb-2 text-left" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "input input-bordered w-full rounded-sm" %>
       </div>
 
       <% if @devise_mapping.rememberable? %>
-        <div class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
+        <div class="mb-4 flex items-center">
+          <%= f.check_box :remember_me, class: "mr-2" %>
+          <%= f.label :remember_me, "ログイン情報を記憶する", class: "text-xs" %>
         </div>
       <% end %>
 
-      <div class="actions text-center">
-        <%= f.submit "ログイン", class: 'bg-tomato text-white font-bold py-2 px-4 rounded hover:bg-blue-700' %>
+      <div class="text-center">
+        <%= f.submit "ログイン", class: 'bg-tomato text-white font-bold py-2 px-4 my-5 rounded hover:bg-blue-700' %>
       </div>
-      <% end %>
+    <% end %>
   </div>
-
 </body>

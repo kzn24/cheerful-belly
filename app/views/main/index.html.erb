@@ -1,7 +1,10 @@
 <%= render 'shared/botton' %>
 
-<div class="flex justify-center w-full px-10 mb-40">
-  <div class="card card-compact bg-base-100 w-full rounded-sm shadow-md h-auto">
+<p class="text-lg font-semibold ml-4 mt-20">服用スケジュール</p>
+<div class="border-t border-gray-900 mb-12 mt-1"></div>
+
+<div class="flex justify-center w-full mb-32">
+  <div class="card card-compact bg-base-100 w-80 rounded-sm shadow-md h-auto">
     <div class="card-body">
       <p class="underline underline-offset-4 mb-2">いま服用しているお薬とサプリメント</p>
       <% @active_schedules.each do |schedule| %>
@@ -9,9 +12,8 @@
         <% days_until_end = (schedule.end_date - Date.today).to_i %>
         <% name = schedule.drug&.drug_name || schedule.supplement&.supplement_name %>
         <% if name.present? %>
-          <p>
-            ・<%= name %>を開始してから<span class="font-bold text-base"><%= days_since_start %></span>日目。残りあと<span class="font-bold text-base"><%= days_until_end %></span>日。
-          </p>
+          <p>・<%= name %>を開始してから<span class="font-bold text-base"><%= days_since_start %></span>日目。</p>
+          <p>　残りあと<span class="font-bold text-base"><%= days_until_end %></span>日。</p>
         <% end %>
       <% end %>
       <br>
@@ -27,23 +29,21 @@
       <% end %>
 
       <div class="card-actions justify-end">
-        <button class="btn btn-ghost">
-          <%= link_to '＞', user_schedules_path(current_user) %>
-        </button>
+        <%= link_to '>', user_schedules_path(current_user) %>
       </div>
     </div>
   </div>
 </div>
 
-<p class="text-lg ml-6">記 録</p>
-<div class="divider"></div>
+<p class="text-lg font-semibold ml-4">記 録</p>
+<div class="border-t border-gray-900 mb-5 mt-1"></div>
 
-<span class="badge badge-sm bg-condition text-zinc-50 ml-5 mb-3">体 調</span>
-<span class="badge badge-sm bg-belly text-zinc-50 ml-2 mb-3">消化器官</span>
-<span class="badge badge-sm bg-ginkgo-900 text-zinc-50 ml-2 mb-3">食 事</span>
-<span class="badge badge-sm bg-poop text-zinc-50 ml-2 mb-3">排 便</span>
+<span class="badge badge-sm bg-condition text-zinc-50 rounded-md p-2 ml-4 mb-3">体 調</span>
+<span class="badge badge-sm bg-belly text-zinc-50 rounded-md p-2 ml-1 mb-3">消化器官</span>
+<span class="badge badge-sm bg-ginkgo-900 text-zinc-50 rounded-md p-2 ml-1 mb-3">食 事</span>
+<span class="badge badge-sm bg-poop text-zinc-50 rounded-md p-2 ml-1 mb-3">排 便</span>
 
-<div class="overflow-x-auto">
+<div class="overflow-x-auto tracking-normal">
   <%= line_chart [
     { name: "体調", data: @condition_rating_data },
     { name: "消化器官", data: @belly_rating_data },
