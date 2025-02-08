@@ -10,7 +10,7 @@ class SchedulesController < ApplicationController
   def create
     @schedule = current_user.schedules.new(schedule_params)
     if @schedule.save
-      redirect_to user_main_index_path, notice: "スケジュールの登録ができました"
+      redirect_to user_schedules_path(current_user), notice: "スケジュールの登録ができました"
     else
       render :new, status: :unprocessable_entity
     end

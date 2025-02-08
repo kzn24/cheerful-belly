@@ -18,7 +18,7 @@
           <div class="border-t border-gray-900 mb-5 mt-1"></div>
           <li class="my-12">服用済みお薬・サプリのデータ（未実装）</li>
 
-          <div class="divider">ひとこと日記</div>
+          <div class="divider text-xs">ひとこと日記</div>
           <li class="my-12"><%= record.diary %></li>
 
           <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-10 rounded-md text-left">
@@ -33,7 +33,11 @@
   </div>
 <% end %>
 </div>
+
 <% if @records.empty? %>
-<p>データがありません</p> <!-- データがない時のメッセージ -->
+  <div class="card card-compact bg-stone-50 w-80 flex-shrink-0 h-auto mx-2.5 mb-12 pb-5 rounded-md shadow-xl">
+    <div class="card-body text-center">
+      <p>記録がありません。</p>
+    </div>
+  </div>
 <% end %>
-</div>
