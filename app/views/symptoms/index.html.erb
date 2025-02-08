@@ -21,7 +21,7 @@
       <p class="text-lg mb-5">Symptoms</p>
       <% @symptoms.each do |symptom| %>
         <%= turbo_frame_tag dom_id(symptom) do %>
-          <div class="flex justify-between items-center">
+          <div class="flex justify-between items-center text-sm">
             <div><%= symptom.symptom_name %></div>
             <div>
               <%= link_to "編集", edit_user_symptom_path(user_id: current_user.id, id: symptom.id) %>

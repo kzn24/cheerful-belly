@@ -1,22 +1,25 @@
 class MainController < ApplicationController
   def index
-    # 予定表示
-    @active_schedules = schedules.select do |schedule|
-      schedule.start_date <= today && today <= schedule.end_date
-    end
-    @upcoming_schedules = schedules.select do |schedule|
-      today < schedule.start_date
-    end
+    # 服用スケジュール表示用
+    @active_schedules = current_user.schedules
+                                    .where("start_date <= ? AND end_date >= ?", today, today)
+                                    .includes(:drug, :supplement)
+
+    @upcoming_schedules = current_user.schedules
+                                      .where("start_date > ?", today)
+                                      .includes(:drug, :supplement)
+
+    schedules = current_user.schedules.includes(:drug, :supplement)
 
     # 今日から半月前〜半月後の日付範囲を生成
     date_range = ((Date.today - 15)..(Date.today + 15)).to_a
 
-    # 記録表示
+    # 記録カード用
     @records = current_user.records
                .where(record_date: date_range)
                .order(record_date: :asc)
 
-    # 記録グラフ表示
+    # 記録グラフ用
     @condition_rating_data = fill_missing_dates(
       Record.where.not(condition_rating: 0)
             .group_by_day(:record_date)

@@ -1,41 +1,45 @@
 <%= render 'shared/botton' %>
 
-<p class="text-lg font-semibold ml-4 mt-20">服用スケジュール</p>
+<p class="font-semibold ml-4 mt-20">服用スケジュール</p>
 <div class="border-t border-gray-900 mb-12 mt-1"></div>
 
 <div class="flex justify-center w-full mb-32">
-  <div class="card card-compact bg-base-100 w-80 rounded-sm shadow-md h-auto">
+  <div class="card card-compact bg-base-100 w-full rounded-sm shadow-md h-auto mx-4">
     <div class="card-body">
-      <p class="underline underline-offset-4 mb-2">いま服用しているお薬とサプリメント</p>
+      <p class="text-xs underline underline-offset-4 mb-2">いま服用しているお薬とサプリメント</p>
       <% @active_schedules.each do |schedule| %>
         <% days_since_start = (Date.today - schedule.start_date).to_i + 1 %>
         <% days_until_end = (schedule.end_date - Date.today).to_i %>
         <% name = schedule.drug&.drug_name || schedule.supplement&.supplement_name %>
         <% if name.present? %>
-          <p>・<%= name %>を開始してから<span class="font-bold text-base"><%= days_since_start %></span>日目。</p>
-          <p>　残りあと<span class="font-bold text-base"><%= days_until_end %></span>日。</p>
+          <p class="mb-[-10px]">
+            <span class="text-xs">・<%= name %>を開始してから</span><span class="font-bold text-base"><%= days_since_start %></span><span class="text-xs">日目。</span>
+          </p>
+          <p>
+            <span class="text-xs ml-4">残りあと</span><span class="font-bold text-base"><%= days_until_end %></span><span class="text-xs">日。</span>
+          </p>
         <% end %>
       <% end %>
       <br>
-      <p class="underline underline-offset-4 mb-2">服用を控えているお薬とサプリメント</p>
+      <p class="text-xs underline underline-offset-4 mb-2">服用を控えているお薬とサプリメント</p>
       <% @upcoming_schedules.each do |schedule| %>
         <% days_until_start = (schedule.start_date - Date.today).to_i %>
         <% name = schedule.drug&.drug_name || schedule.supplement&.supplement_name %>
         <% if name.present? %>
           <p>
-            ・<%= name %>が始まるまであと<span class="font-bold text-base"><%= days_until_start %></span>日。
+            <span class="text-xs">・<%= name %>が始まるまであと</span><span class="font-bold text-base"><%= days_until_start %></span><span class="text-xs">日。</span>
           </p>
         <% end %>
       <% end %>
 
       <div class="card-actions justify-end">
-        <%= link_to '>', user_schedules_path(current_user) %>
+        <%= link_to image_tag('arrow-right.svg', class: 'w-10 h-10'), user_schedules_path(current_user) %>
       </div>
     </div>
   </div>
 </div>
 
-<p class="text-lg font-semibold ml-4">記 録</p>
+<p class="font-semibold ml-4">記 録</p>
 <div class="border-t border-gray-900 mb-5 mt-1"></div>
 
 <span class="badge badge-sm bg-condition text-zinc-50 rounded-md p-2 ml-4 mb-3">体 調</span>

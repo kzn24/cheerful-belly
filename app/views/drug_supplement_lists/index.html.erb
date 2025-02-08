@@ -25,7 +25,7 @@
       <p class="text-lg mb-5">Drugs</p>
       <% @drugs.each do |drug| %>
         <%= turbo_frame_tag dom_id(drug) do %>
-          <div class="flex justify-between items-center">
+          <div class="flex justify-between items-center text-sm">
             <div><%= drug.drug_name %></div>
             <div>
               <%= link_to "編集", edit_user_drug_path(user_id: current_user.id, id: drug.id) %>
@@ -43,7 +43,7 @@
       <p class="text-lg mb-5">Supplements</p>
       <% @supplements.each do |supplement| %>
         <%= turbo_frame_tag dom_id(supplement) do %>
-          <div class="flex justify-between items-center">
+          <div class="flex justify-between items-center text-sm">
             <div><%= supplement.supplement_name %></div>
             <div>
               <%= link_to "編集", edit_user_supplement_path(user_id: current_user.id, id: supplement.id) %>

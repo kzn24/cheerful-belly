@@ -1,4 +1,4 @@
-<p class="text-lg font-semibold ml-4 mt-20"><%= @record.record_date.strftime("%Y年%m月%d日") %>の記録</p>
+<p class="text-lg ml-4 mt-20"><%= @record.record_date.strftime("%Y年%m月%d日") %>の記録</p>
 <div class="border-t border-gray-900 mb-12 mt-1"></div>
 
 <div class="flex flex-col items-center w-full">
@@ -17,7 +17,7 @@
 
         <li class="my-12">服用済みお薬・サプリのデータ（未実装）</li>
 
-        <div class="divider">ひとこと日記</div>
+        <div class="divider text-xs">ひとこと日記</div>
         <li class="my-12"><%= @record.diary %></li>
 
         <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-10 rounded-md text-left">

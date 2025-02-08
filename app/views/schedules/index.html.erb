@@ -1,6 +1,6 @@
-<div class="flex justify-between items-center mt-20">
-  <p class="text-lg font-semibold ml-4">服用スケジュール</p>
-  <%= link_to "予定を立てる", new_user_schedule_path(current_user), class: "text-sm text-gray-500 hover:underline mr-6" %>
+<div class="flex justify-between items-center mt-20 mx-4">
+  <p class="text-lg font-semibold">服用スケジュール</p>
+  <%= link_to image_tag('calendar.svg', class: "w-9 h-9"), new_user_schedule_path(current_user) %>
 </div>
 
 <div class="border-t border-gray-900 mb-16 mt-1"></div>
@@ -12,6 +12,7 @@
         <th>開始日</th>
         <th>終了日</th>
         <th>お薬とサプリ</th>
+        <th></th>
       </tr>
     </thead>
 
@@ -27,10 +28,10 @@
               <div class="badge badge-sm bg-leaf-500 text-zinc-50 rounded-md p-2"><%= schedule.supplement.supplement_name %></div>
             <% end %>
           </td>
-          <td>
-            <%= link_to "編集", edit_user_schedule_path(current_user, schedule) %>
-            <%= link_to "削除", user_schedule_path(current_user, schedule), data: { turbo_method: :delete, turbo_confirm: "#{schedule.drug.present? ? schedule.drug.drug_name : schedule.supplement.supplement_name}を削除しますか？" } %>
-            </td>
+          <td class="flex items-center">
+            <%= link_to image_tag('edit.svg', class: "w-8 h-8"), edit_user_schedule_path(current_user, schedule) %>
+            <%= link_to image_tag('trash.svg', class: "w-9 h-9"), user_schedule_path(current_user, schedule), data: { turbo_method: :delete, turbo_confirm: "#{schedule.drug.present? ? schedule.drug.drug_name : schedule.supplement.supplement_name}を削除しますか？" } %>
+          </td>
         </tr>
       <% end %>
     </tbody>

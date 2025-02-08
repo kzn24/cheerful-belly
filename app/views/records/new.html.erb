@@ -1,17 +1,15 @@
-<p class="text-lg font-semibold ml-4 mt-20">記録を書く</p>
+<p class="text-lg ml-4 mt-20">記録を書く</p>
 <div class="border-t border-gray-900 mb-12 mt-1"></div>
 
 <div class="flex flex-col items-center w-full">
-  <p class="text-xs mx-4 mb-12 text-center">すでに登録のある日付の記録はできませんのでご注意ください。</p>
+  <p class="text-xs mx-4 mb-12 text-left">すでに登録のある日付の記録はできませんのでご注意ください。</p>
 
   <% if @record.errors.any? %>
     <div class="text-red-500 text-xs text-left ml-4 mb-5">
       <ul>
         <% @record.errors[:record_date].each do |message| %>
-          <li>
-            <%= message %>
-            <%= link_to '記録を見る', user_record_path(@record.existing_record_id, user_id: current_user.id) %>
-          </li>
+          <li><%= message %></li>
+          <li><%= link_to '記録を見る', user_record_path(@record.existing_record_id, user_id: current_user.id) %></li>
         <% end %>
       </ul>
     </div>
