@@ -29,7 +29,7 @@
             <div><%= drug.drug_name %></div>
             <div>
               <%= link_to "編集", edit_user_drug_path(user_id: current_user.id, id: drug.id) %>
-              <%= link_to "削除", user_drug_path(user_id: current_user.id, id: drug.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+              <%= link_to "削除", user_drug_path(user_id: current_user.id, id: drug.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "#{drug.drug_name}を使用して登録しているスケジュールのデータも消えてしまいますが本当に削除しますか？" } %>
             </div>
           </div>
           <div class="border-t border-gray-300 my-3"></div>
@@ -47,7 +47,7 @@
             <div><%= supplement.supplement_name %></div>
             <div>
               <%= link_to "編集", edit_user_supplement_path(user_id: current_user.id, id: supplement.id) %>
-              <%= link_to "削除", user_supplement_path(user_id: current_user.id, id: supplement.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+              <%= link_to "削除", user_supplement_path(user_id: current_user.id, id: supplement.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "#{supplement.supplement_name}を使用して登録しているスケジュールのデータも消えてしまいますが本当に削除しますか？" } %>
             </div>
           </div>
           <div class="border-t border-gray-300 my-3"></div>
