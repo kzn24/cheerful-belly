@@ -36,7 +36,7 @@ class SymptomsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to user_symptoms_path(current_user), notice: "症状を削除しました。" }
+      format.html { redirect_to user_symptoms_path(current_user), notice: "#{symptom.symptom_name}の症状を削除しました。", status: :see_other }
     end
   end
 
