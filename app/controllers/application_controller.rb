@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   protected
-
+  # Deviseコントローラ呼び出し時に許可するパラメータ
   def configure_permitted_parameters
     added_attrs = [ :email, :password, :password_confirmation, :first_name, :last_name, :first_name_kana, :last_name_kana, :gender, :birthdate ]
     devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
