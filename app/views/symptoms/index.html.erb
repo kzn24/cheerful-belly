@@ -25,7 +25,7 @@
             <div><%= symptom.symptom_name %></div>
             <div>
               <%= link_to "編集", edit_user_symptom_path(user_id: current_user.id, id: symptom.id) %>
-              <%= link_to "削除", user_symptom_path(user_id: current_user.id, id: symptom.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+              <%= link_to "削除", user_symptom_path(user_id: current_user.id, id: symptom.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "#{symptom.symptom_name}を削除しますか？" } %>
             </div>
           </div>
           <div class="border-t border-gray-300 my-3"></div>
