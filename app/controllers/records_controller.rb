@@ -36,7 +36,7 @@ class RecordsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to user_main_index_path, notice: "記録を削除しました" }
+      format.html { redirect_to user_main_index_path, notice: "記録を削除しました", status: :see_other }
     end
   end
 

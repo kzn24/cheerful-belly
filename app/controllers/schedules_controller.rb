@@ -37,7 +37,7 @@ class SchedulesController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to user_schedules_path(current_user), notice: "スケジュールを削除しました" }
+      format.html { redirect_to user_schedules_path(current_user), notice: "スケジュールを削除しました", status: :see_other }
     end
   end
 

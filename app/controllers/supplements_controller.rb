@@ -20,7 +20,7 @@ class SupplementsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to user_drug_supplement_lists_path(current_user), notice: "サプリメントを削除しました。" }
+      format.html { redirect_to user_drug_supplement_lists_path(current_user), notice: "#{supplement.supplement_name}を削除しました。", status: :see_other }
     end
   end
 

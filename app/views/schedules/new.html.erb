@@ -21,8 +21,8 @@
     <p class="text-xs mx-4 mt-12 mb-10">どちらか一方を選択してください。</p>
 
     <div class="flex space-x-4">
-      <%= f.collection_select :drug_id, Drug.all, :id, :drug_name, { include_blank: "お薬" }, { class: "select select-bordered select-sm w-full max-w-xs border-sky-500 rounded-sm" } %>
-      <%= f.collection_select :supplement_id, Supplement.all, :id, :supplement_name, { include_blank: "サプリ" }, { class: "select select-bordered select-sm w-full max-w-xs border-leaf-500 rounded-sm" } %>
+      <%= f.collection_select :drug_id, current_user.drugs, :id, :drug_name, { include_blank: "お薬" }, { class: "select select-bordered select-sm w-full max-w-xs border-sky-500 rounded-sm" } %>
+      <%= f.collection_select :supplement_id, current_user.supplements, :id, :supplement_name, { include_blank: "サプリ" }, { class: "select select-bordered select-sm w-full max-w-xs border-leaf-500 rounded-sm" } %>
     </div>
 
     <div class="flex flex-col items-center">

@@ -1,0 +1,27 @@
+<p class="font-semibold ml-4 mt-20">マイページ</p>
+<div class="border-t border-gray-900 mb-12 mt-1"></div>
+
+<p>名前</p>
+<%= @user.last_name %>
+<%= @user.first_name %>
+<div class="border-t border-gray-300 my-3"></div>
+
+<p>ﾌﾘｶﾞﾅ</p>
+<%= @user.last_name_kana %>
+<%= @user.first_name_kana %>
+<div class="border-t border-gray-300 my-3"></div>
+
+<p>生年月日</p>
+<%= @user.birthdate %>
+<div class="border-t border-gray-300 my-3"></div>
+
+<p>性別</p>
+<%= @user.gender %>
+<div class="border-t border-gray-300 my-3"></div>
+
+<p>メールアドレス</p>
+<%= @user.email %>
+<div class="border-t border-gray-300 my-3"></div>
+
+<%= link_to "編集する", >
+<%= link_to "退会する", user_path(current_user), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に退会しますか？" } %>

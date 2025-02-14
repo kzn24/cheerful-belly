@@ -21,28 +21,28 @@ class MainController < ApplicationController
 
     # 記録グラフ用
     @condition_rating_data = fill_missing_dates(
-      Record.where.not(condition_rating: 0)
+      current_user.records.where.not(condition_rating: 0)
             .group_by_day(:record_date)
             .average(:condition_rating),
       date_range
     )
 
     @belly_rating_data = fill_missing_dates(
-      Record.where.not(belly_rating: 0)
+      current_user.records.where.not(belly_rating: 0)
             .group_by_day(:record_date)
             .average(:belly_rating),
       date_range
     )
 
     @meal_rating_data = fill_missing_dates(
-      Record.where.not(meal_rating: 0)
+      current_user.records.where.not(meal_rating: 0)
             .group_by_day(:record_date)
             .average(:meal_rating),
       date_range
     )
 
     @poop_rating_data = fill_missing_dates(
-      Record.where.not(poop_rating: 0)
+      current_user.records.where.not(poop_rating: 0)
             .group_by_day(:record_date)
             .average(:poop_rating),
       date_range
