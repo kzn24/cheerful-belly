@@ -36,7 +36,7 @@
 
     <div>
       <%= f.label :gender, raw("性別 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mt-12 mb-1 text-left" %>
-      <%= f.select :gender, options_for_select([['男性', 'man'], ['女性', 'woman']], selected: nil), { prompt: '選択してください' }, class: "select select-bordered w-full rounded-sm" %>
+      <%= f.select :gender, options_for_select([['選択しない', ''], ['女性', 'woman'], ['男性', 'man']]), { prompt: '選択してください' }, class: "select select-bordered w-full rounded-sm" %>
     </div>
 
     <div>
