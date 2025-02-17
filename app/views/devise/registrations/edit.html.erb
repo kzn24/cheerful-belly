@@ -1,43 +1,71 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<!-- 基本情報編集ページ -->
+<p class="text-lg ml-4 mt-20">基本情報編集</p>
+<div class="border-t border-gray-900 mb-12 mt-1"></div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<p class="text-sm mb-6 ml-4"> 
+  <span class="text-ginkgo-900">*</span> が付いている項目は必須です。
+</p>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="flex flex-col w-full px-4">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div class="text-red-500 text-xs text-left mb-8">
+      <%= render "devise/shared/error_messages", resource: resource %>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <div class="flex space-x-4">
+      <div class="w-1/2">
+        <%= f.label :last_name, raw("姓 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mb-1 text-left" %>
+        <%= f.text_field :last_name, autofocus: true, class: "input input-bordered rounded-sm w-full" %>
+      </div>
+      <div class="w-1/2">
+        <%= f.label :first_name, raw("名 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mb-1 text-left" %>
+        <%= f.text_field :first_name, class: "input input-bordered rounded-sm w-full" %>
+      </div>
+    </div>
+
+    <div class="flex space-x-4 mt-2">
+      <div class="w-1/2">
+        <%= f.label :last_name_kana, raw("姓(半角ｶﾀｶﾅ) <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mb-1 text-left" %>
+        <%= f.text_field :last_name_kana, class: "input input-bordered rounded-sm w-full" %>
+      </div>
+      <div class="w-1/2">
+        <%= f.label :first_name_kana, raw("名(半角ｶﾀｶﾅ) <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mb-1 text-left" %>
+        <%= f.text_field :first_name_kana, class: "input input-bordered rounded-sm w-full" %>
+      </div>
+    </div>
+
+    <div>
+      <%= f.label :gender, raw("性別 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mt-12 mb-1 text-left" %>
+      <%= f.select :gender, options_for_select([['選択しない', ''], ['女性', 'woman'], ['男性', 'man']], f.object.gender), { prompt: '選択してください' }, class: "select select-bordered w-full rounded-sm" %>
+    </div>
+
+    <div>
+      <%= f.label :birthdate, "生年月日", class: "text-xs block mt-12 mb-1 text-left" %>
+      <%= f.date_select :birthdate, start_year: 1920, end_year: 2120, use_month_numbers: true, include_blank: true, class: "w-full" %>
+    </div>
+
+    <div>
+      <%= f.label :email, raw("メールアドレス <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mt-12 mb-1 text-left" %>
+      <%= f.email_field :email, autocomplete: "email", class: "input input-bordered rounded-sm w-full" %>
+    </div>
+
+    <div>
+      <%= f.label :password , class: "text-xs block mt-12 mb-1 text-left" %>
+      <em class="text-xs block mb-1">(パスワードを変更しない場合は空白のままにしてください。変更する場合は6文字以上で設定してください。)</em>
+      <%= f.password_field :password, autocomplete: "new-password", class: "input input-bordered rounded-sm w-full" %>
+    </div>
+
+    <div>
+      <%= f.label :password_confirmation, raw("パスワード確認"), class: "text-xs block mt-2 mb-1 text-left" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input input-bordered rounded-sm w-full" %>
+    </div>
+
+    <div class="mt-5">
+      <%= f.submit "登  録", class: "btn btn-sm glass w-full rounded-sm mt-10" %>
+    </div>
+
+    <div class="mt-2">
+      <%= link_to "キャンセル", user_path(current_user), class: "btn btn-sm glass w-full rounded-sm" %>
+    </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
-
-<%= link_to "Back", :back %>
+</div>
