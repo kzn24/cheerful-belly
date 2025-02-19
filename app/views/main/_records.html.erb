@@ -22,19 +22,19 @@
           <li class="my-12"><%= record.diary %></li>
 
           <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-10 rounded-md text-left">
-            <li class="font-bold mb-5">食事</li>
-            <li><%= record.food %></li>
+            <li class="font-bold mb-5">食 事</li>
+            <li class="text-xs"><%= record.food %></li>
             <div class="border-t border-gray-300 my-5"></div>
-            <li><%= record.meal_memo %></li>
+            <li class="text-xs"><%= record.meal_memo %></li>
           </div>
 
-          <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-10 rounded-md text-left">
-            <li class="font-bold mb-5">うんち</li>
-            <li>いつ：<%= record.defecation %></li>
-            <li>かたち：<%= record.poop_shape %></li>
-            <li>量：<%= record.poop_amount %></li>
+          <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-5 rounded-md text-left">
+            <li class="font-bold mb-5">排 便</li>
+            <li class="text-xs mb-4">時間： <%= record.defecation.presence&.split(",")&.join("，") %></li>
+            <li class="text-xs mb-4">形状： <%= record.poop_shape.presence&.split(",")&.join("，") %></li>
+            <li class="text-xs">分量： <%= record.poop_amount.presence&.split(",")&.join("，") %></li>
             <div class="border-t border-gray-300 my-5"></div>
-            <li><%= record.poop_memo %></li>
+            <li class="text-xs"><%= record.poop_memo %></li>
           </div>
 
         </ul>
