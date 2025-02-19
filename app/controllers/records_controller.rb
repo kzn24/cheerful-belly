@@ -1,6 +1,4 @@
 class RecordsController < ApplicationController
-  before_action :record_string, only: [:create, :update]
-
   def new
     @record = Record.new
   end
@@ -45,11 +43,14 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record).permit(:record_date, :poop_rating, :belly_rating, :meal_rating, :condition_rating, :food, :meal_memo, :diary, :poop_memo, defecation: [], poop_amount: [], poop_shape: [])
-    .merge(user_id: current_user.id)
-  end
-
-  def record_string
-    params[:record][:defecation][:poop_amount][:poop_shape] = params[:record][:defecation][:poop_amount][:poop_shape].join("/")
+    params.require(:record).permit(
+      :record_date, :poop_rating, :belly_rating, :meal_rating, :condition_rating,
+      :food, :meal_memo, :diary, :poop_memo, defecation: [], poop_amount: [], poop_shape: []
+    ).tap do |whitelisted|
+      # 配列をカンマ区切りの文字列に変換（reject(&:blank?)はnil対策）
+      whitelisted[:defecation] = whitelisted[:defecation].reject(&:blank?).join(",") if whitelisted[:defecation].is_a?(Array)
+      whitelisted[:poop_amount] = whitelisted[:poop_amount].reject(&:blank?).join(",") if whitelisted[:poop_amount].is_a?(Array)
+      whitelisted[:poop_shape] = whitelisted[:poop_shape].reject(&:blank?).join(",") if whitelisted[:poop_shape].is_a?(Array)
+    end
   end
 end
