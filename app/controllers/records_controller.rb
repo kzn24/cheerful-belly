@@ -1,4 +1,6 @@
 class RecordsController < ApplicationController
+  before_action :record_string, only: [:create, :update]
+
   def new
     @record = Record.new
   end
@@ -43,7 +45,11 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record).permit(:record_date, :poop_rating, :belly_rating, :meal_rating, :condition_rating, :food, :meal_memo, :diary)
+    params.require(:record).permit(:record_date, :poop_rating, :belly_rating, :meal_rating, :condition_rating, :food, :meal_memo, :diary, :poop_memo, defecation: [], poop_amount: [], poop_shape: [])
     .merge(user_id: current_user.id)
+  end
+
+  def record_string
+    params[:record][:defecation][:poop_amount][:poop_shape] = params[:record][:defecation][:poop_amount][:poop_shape].join("/")
   end
 end
