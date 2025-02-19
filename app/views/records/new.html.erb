@@ -16,17 +16,18 @@
   <% end %>
 
   <%= form_with model: @record, url: user_records_path(current_user), local: true do |f| %>
-    <div class="flex justify-center mb-8">
+    <div class="flex justify-center mb-5">
       <%= f.date_select :record_date %>の記録
     </div>
 
     <div class="flex justify-center w-full mb-32">
       <div class="card card-compact bg-base-100 w-full rounded-sm shadow-md h-auto mx-4">
         <div class="card-body">
-          <p class="font-bold">う ん ち</p>
+          <p class="font-bold">排 便</p>
           <div class="border-t border-gray-300 mb-8"></div>
 
-          <p class="font-bold text-xs text-center mb-3">総合評価</p>
+          <p class="font-bold text-xs text-center">排便総合評価</p>
+          <p class="text-xs text-center mb-2">（グラフに反映されます）</p>
           <div class="rating flex justify-center items-center">
             <%= f.label :poop_rating, "評価しない", for: "poop_rating_0", class: "text-xs" %>
             <%= f.radio_button :poop_rating, 0, class: "mask mask-star-2 bg-gray-400 mr-5", id: "poop_rating_0", checked: true %>
@@ -42,24 +43,11 @@
               <%= f.label :defecation, "排便の有無", class: "font-bold" %>
             </div>
             <div class="flex justify-center flex-wrap gap-3">
-              <div class="flex items-center">
-                <%= f.check_box :defecation, { multiple: true, class: "mr-1" }, "朝", nil %> 朝
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :defecation, { multiple: true, class: "mr-1" }, "午前中", nil %> 午前中
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :defecation, { multiple: true, class: "mr-1" }, "昼", nil %> 昼
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :defecation, { multiple: true, class: "mr-1" }, "夕方", nil %> 夕方
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :defecation, { multiple: true, class: "mr-1" }, "夜", nil %> 夜
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :defecation, { multiple: true, class: "mr-1" }, "出なかった", nil %> 出なかった
-              </div>
+              <%= f.collection_check_boxes :defecation, ["朝", "午前中", "昼", "夕方", "夜", "出なかった"], :to_s, :to_s do |b| %>
+                <div class="flex items-center">
+                  <%= b.check_box(class: "mr-1") %> <%= b.text %>
+                </div>
+              <% end %>
             </div>
           </div>
 
@@ -68,15 +56,11 @@
               <%= f.label :poop_amount, "うんちの量", class: "font-bold" %>
             </div>
             <div class="flex justify-center flex-wrap gap-3">
-              <div class="flex items-center">
-                <%= f.check_box :poop_amount, { multiple: true, class: "mr-1" }, "すっきり！", nil %> すっきり！
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :poop_amount, { multiple: true, class: "mr-1" }, "いつも通り", nil %> いつも通り
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :poop_amount, { multiple: true, class: "mr-1" }, "残っている感じがする", nil %> 残っている感じがする
-              </div>
+              <%= f.collection_check_boxes :poop_amount, ["すっきり！", "いつも通り", "少しだけ", "残便感あり"], :to_s, :to_s do |b| %>
+                <div class="flex items-center">
+                  <%= b.check_box(class: "mr-1") %> <%= b.text %>
+                </div>
+              <% end %>
             </div>
           </div>
 
@@ -85,36 +69,11 @@
               <%= f.label :poop_shape, "うんちの形状", class: "font-bold" %>
             </div>
             <div class="flex justify-center flex-wrap gap-3">
-              <div class="flex items-center">
-                <%= f.check_box :poop_shape, { multiple: true, class: "mr-1" }, "バナナ状", nil %> バナナ状
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :poop_shape, { multiple: true, class: "mr-1" }, "かちこち", nil %> かちこち
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :poop_shape, { multiple: true, class: "mr-1" }, "ころころ", nil %> ころころ
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :poop_shape, { multiple: true, class: "mr-1" }, "ゆるめ", nil %> ゆるめ
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :poop_shape, { multiple: true, class: "mr-1" }, "脂肪便", nil %> 脂肪便
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :poop_shape, { multiple: true, class: "mr-1" }, "下痢", nil %> 下痢
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :poop_shape, { multiple: true, class: "mr-1" }, "ほぼ水", nil %> ほぼ水
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :poop_shape, { multiple: true, class: "mr-1" }, "粘液状", nil %> 粘液状
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :poop_shape, { multiple: true, class: "mr-1" }, "タール便", nil %> タール便
-              </div>
-              <div class="flex items-center">
-                <%= f.check_box :poop_shape, { multiple: true, class: "mr-1" }, "血便", nil %> 血便
-              </div>
+              <%= f.collection_check_boxes :poop_shape, ["バナナ", "かちこち", "コロコロ", "ゆるめ", "下痢", "ほぼ水", "粘液状", "脂肪便", "タール便", "血便"], :to_s, :to_s do |b| %>
+                <div class="flex items-center">
+                  <%= b.check_box(class: "mr-1") %> <%= b.text %>
+                </div>
+              <% end %>
             </div>
           </div>
 
