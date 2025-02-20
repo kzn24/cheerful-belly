@@ -2,7 +2,7 @@ class Record < ApplicationRecord
   belongs_to :user
 
   validates :condition_rating, :belly_rating, :meal_rating, :poop_rating, inclusion: { in: 0..5 }
-  validates :food, :meal_memo, length: { maximum: 255 }
+  validates :food, :meal_memo, :poop_memo, :belly_memo, length: { maximum: 255 }
   validates :record_date, presence: true
 
   validate :unique_record_date, on: :create
