@@ -4,11 +4,12 @@
 <div class="flex flex-col items-center w-full">
 
   <%= form_with model: @record, url: user_record_path(current_user), local: true do |f| %>
-    <div class="flex justify-center mb-16">
+    <div class="flex justify-center mb-5">
       <%= f.date_select :record_date %>の記録
     </div>
 
-    <div class="flex justify-center w-full mb-32">
+<!-- 排便 -->
+    <div class="flex justify-center w-full mb-10">
       <div class="card card-compact bg-base-100 w-full rounded-sm shadow-md h-auto mx-4">
         <div class="card-body">
           <p class="font-bold">排 便</p>
@@ -75,15 +76,47 @@
       </div>
     </div>
 
-    <div class="divider text-xs mt-20">消化器官</div>
-    <div class="rating flex justify-center items-center">
-      <%= f.label :belly_rating, "評価しない", for: "belly_rating_0", class: "text-xs" %>
-      <%= f.radio_button :belly_rating, 0, class: "mask mask-star-2 bg-gray-400 mr-5", id: "belly_rating_0", checked: true %>
-      <%= f.radio_button :belly_rating, 1, class: "mask mask-star-2 bg-ginkgo-500", id: "belly_rating_1" %>
-      <%= f.radio_button :belly_rating, 2, class: "mask mask-star-2 bg-ginkgo-500", id: "belly_rating_2" %>
-      <%= f.radio_button :belly_rating, 3, class: "mask mask-star-2 bg-ginkgo-500", id: "belly_rating_3" %>
-      <%= f.radio_button :belly_rating, 4, class: "mask mask-star-2 bg-ginkgo-500", id: "belly_rating_4" %>
-      <%= f.radio_button :belly_rating, 5, class: "mask mask-star-2 bg-ginkgo-500", id: "belly_rating_5" %>
+<!-- 消化器官 -->
+    <div class="flex justify-center w-full mb-10">
+      <div class="card card-compact bg-base-100 w-full rounded-sm shadow-md h-auto mx-4">
+        <div class="card-body">
+          <p class="font-bold">消 化 器 官</p>
+          <div class="border-t border-gray-300 mb-8"></div>
+
+          <p class="font-bold text-xs text-center">消化器官総合評価</p>
+          <p class="text-xs text-center mb-2">（グラフに反映されます）</p>
+          <div class="rating flex justify-center items-center">
+            <%= f.label :belly_rating, "評価しない", for: "belly_rating_0", class: "text-xs" %>
+            <%= f.radio_button :belly_rating, 0, class: "mask mask-star-2 bg-gray-400 mr-5", id: "belly_rating_0", checked: true %>
+            <%= f.radio_button :belly_rating, 1, class: "mask mask-star-2 bg-ginkgo-900", id: "belly_rating_1" %>
+            <%= f.radio_button :belly_rating, 2, class: "mask mask-star-2 bg-ginkgo-900", id: "belly_rating_2" %>
+            <%= f.radio_button :belly_rating, 3, class: "mask mask-star-2 bg-ginkgo-900", id: "belly_rating_3" %>
+            <%= f.radio_button :belly_rating, 4, class: "mask mask-star-2 bg-ginkgo-900", id: "belly_rating_4" %>
+            <%= f.radio_button :belly_rating, 5, class: "mask mask-star-2 bg-ginkgo-900", id: "belly_rating_5" %>
+          </div>
+
+          <div class="text-xs">
+            <div class="flex items-center mt-12 mb-5">
+              <%= f.label :belly_condition, "症状", class: "font-bold" %>
+            </div>
+            <div class="flex justify-center flex-wrap gap-3">
+              <%= f.collection_check_boxes :belly_condition, ["腹痛", "げっぷ", "おなら", "膨満感", "腹鳴", "胸焼け", "吐き気", "嘔吐", "胃酸逆流", "その他"], :to_s, :to_s, checked: @selected_belly_condition do |b| %>
+                <div class="flex items-center">
+                  <%= b.check_box(class: "mr-1") %> <%= b.text %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="mt-12 mb-8 w-full flex justify-center">
+            <div class="w-full">
+              <%= f.label :belly_memo, "消化器官メモ", class: "font-bold text-xs block mb-2 text-left" %>
+              <%= f.text_field :belly_memo, class: "textarea textarea-bordered rounded-sm w-full", placeholder: "備考など" %>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
 
     <div class="divider text-xs mt-20">食  事</div>
