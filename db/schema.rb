@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_19_030207) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_20_065452) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,6 +38,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_19_030207) do
     t.text "poop_amount", default: "未入力", null: false
     t.text "poop_shape", default: "未入力", null: false
     t.string "poop_memo"
+    t.text "belly_condition", default: "未入力", null: false
+    t.string "belly_memo"
     t.index ["user_id"], name: "index_records_on_user_id"
   end
 
