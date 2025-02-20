@@ -30,9 +30,9 @@
 
           <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-5 rounded-md text-left">
             <li class="font-bold mb-5">排 便</li>
-            <li class="text-xs mb-4">時間： <%= record.defecation.presence&.split(",")&.join("，") %></li>
-            <li class="text-xs mb-4">形状： <%= record.poop_shape.presence&.split(",")&.join("，") %></li>
-            <li class="text-xs">分量： <%= record.poop_amount.presence&.split(",")&.join("，") %></li>
+            <li class="text-xs mb-4">時間： <%= record.defecation %></li>
+            <li class="text-xs mb-4">形状： <%= record.poop_shape %></li>
+            <li class="text-xs">分量： <%= record.poop_amount %></li>
             <div class="border-t border-gray-300 my-5"></div>
             <li class="text-xs"><%= record.poop_memo %></li>
           </div>
