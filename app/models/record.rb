@@ -1,8 +1,10 @@
 class Record < ApplicationRecord
   belongs_to :user
+  has_many :record_symptoms, dependent: :destroy
+  has_many :symptoms, through: :record_symptoms
 
   validates :condition_rating, :belly_rating, :meal_rating, :poop_rating, inclusion: { in: 0..5 }
-  validates :food, :meal_memo, :poop_memo, :belly_memo, length: { maximum: 255 }
+  validates :food, :meal_memo, :poop_memo, :belly_memo, :condition_memo, length: { maximum: 255 }
   validates :record_date, presence: true
 
   validate :unique_record_date, on: :create
