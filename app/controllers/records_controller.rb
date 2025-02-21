@@ -51,8 +51,8 @@ class RecordsController < ApplicationController
   # 配列のまま受け取り、ストロングパラメータの許可後に文字列に変換させる
   def record_params
     params.require(:record).permit(
-      :record_date, :poop_rating, :belly_rating, :meal_rating, :condition_rating, :food, :meal_memo, :diary, :poop_memo, :belly_memo,
-      defecation: [], poop_amount: [], poop_shape: [], belly_condition: []
+      :record_date, :poop_rating, :belly_rating, :meal_rating, :condition_rating, :food, :meal_memo, :diary, :poop_memo, :belly_memo, :condition_memo,
+      defecation: [], poop_amount: [], poop_shape: [], belly_condition: [], symptom_ids: []
     ).tap do |params|
       params[:defecation] = params[:defecation].reject(&:blank?).join("，") if params[:defecation].is_a?(Array)
       params[:poop_amount] = params[:poop_amount].reject(&:blank?).join("，") if params[:poop_amount].is_a?(Array)
