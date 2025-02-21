@@ -1,5 +1,7 @@
 class Symptom < ApplicationRecord
   belongs_to :user
+  has_many :record_symptoms, dependent: :destroy
+  has_many :records, through: :record_symptoms
 
   validates :symptom_name, presence: true
   validates :symptom_name, uniqueness: { scope: :user_id }
