@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_20_065452) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_21_084517) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_20_065452) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_drugs_on_user_id"
+  end
+
+  create_table "record_symptoms", force: :cascade do |t|
+    t.bigint "record_id", null: false
+    t.bigint "symptom_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_id"], name: "index_record_symptoms_on_record_id"
+    t.index ["symptom_id"], name: "index_record_symptoms_on_symptom_id"
   end
 
   create_table "records", force: :cascade do |t|
@@ -40,6 +49,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_20_065452) do
     t.string "poop_memo"
     t.text "belly_condition", default: "未入力", null: false
     t.string "belly_memo"
+    t.string "condition_memo"
     t.index ["user_id"], name: "index_records_on_user_id"
   end
 
@@ -91,6 +101,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_20_065452) do
   end
 
   add_foreign_key "drugs", "users"
+  add_foreign_key "record_symptoms", "records"
+  add_foreign_key "record_symptoms", "symptoms"
   add_foreign_key "records", "users"
   add_foreign_key "schedules", "drugs"
   add_foreign_key "schedules", "supplements"

@@ -14,24 +14,31 @@
               </ul>
             </div>
           </li>
-
           <div class="border-t border-gray-900 mb-5 mt-1"></div>
+
           <li class="my-12">服用済みお薬・サプリのデータ（未実装）</li>
 
           <div class="divider text-xs">ひとこと日記</div>
           <li class="my-12"><%= record.diary %></li>
 
           <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-10 rounded-md text-left">
+            <li class="font-bold mb-5">体 調</li>
+            <li class="text-xs"><%= record.symptoms.map(&:symptom_name).join("，") %></li>
+            <div class="border-t border-dotted border-gray-400 my-5 mx-10"></div>
+            <li class="text-xs"><%= record.condition_memo %></li>
+          </div>
+
+          <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-5 rounded-md text-left">
             <li class="font-bold mb-5">消 化 器 官</li>
             <li class="text-xs"><%= record.belly_condition %></li>
-            <div class="border-t border-gray-300 my-5"></div>
+            <div class="border-t border-dotted border-gray-400 my-5 mx-10"></div>
             <li class="text-xs"><%= record.belly_memo %></li>
           </div>
 
           <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-5 rounded-md text-left">
             <li class="font-bold mb-5">食 事</li>
             <li class="text-xs"><%= record.food %></li>
-            <div class="border-t border-gray-300 my-5"></div>
+            <div class="border-t border-dotted border-gray-400 my-5 mx-10"></div>
             <li class="text-xs"><%= record.meal_memo %></li>
           </div>
 
@@ -40,7 +47,7 @@
             <li class="text-xs mb-4">時間： <%= record.defecation %></li>
             <li class="text-xs mb-4">形状： <%= record.poop_shape %></li>
             <li class="text-xs">分量： <%= record.poop_amount %></li>
-            <div class="border-t border-gray-300 my-5"></div>
+            <div class="border-t border-dotted border-gray-400 my-5 mx-10"></div>
             <li class="text-xs"><%= record.poop_memo %></li>
           </div>
 
