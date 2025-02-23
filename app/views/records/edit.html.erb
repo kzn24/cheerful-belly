@@ -1,7 +1,7 @@
 <p class="text-lg ml-4 mt-20">記録の編集</p>
 <div class="border-t border-gray-900 mb-12 mt-1"></div>
 
-<div class="flex flex-col items-center w-full">
+<div class="flex flex-col w-full">
 
   <%= form_with model: @record, url: user_record_path(current_user), local: true do |f| %>
     <div class="flex justify-center mb-5">
@@ -9,13 +9,13 @@
     </div>
 
 <!-- 排便 -->
-    <div class="flex justify-center w-full mb-10">
+    <div class="flex justify-center w-full mb-5">
       <div class="card card-compact bg-base-100 w-full rounded-sm shadow-md h-auto mx-4">
         <div class="card-body">
           <p class="font-bold">排 便</p>
           <div class="border-t border-gray-300 mb-8"></div>
 
-          <p class="font-bold text-xs text-center">排便総合評価</p>
+          <p class="font-bold text-xs text-center">今日の排便総合評価</p>
           <p class="text-xs text-center mb-2">（グラフに反映されます）</p>
           <div class="rating flex justify-center items-center">
             <%= f.label :poop_rating, "評価しない", for: "poop_rating_0", class: "text-xs" %>
@@ -69,7 +69,7 @@
           <div class="mt-12 mb-8 w-full flex justify-center">
             <div class="w-full">
               <%= f.label :poop_memo, "うんちメモ", class: "font-bold text-xs block mb-2 text-left" %>
-              <%= f.text_field :poop_memo, class: "textarea textarea-bordered rounded-sm w-full", placeholder: "うんちメモ" %>
+              <%= f.text_field :poop_memo, class: "textarea textarea-bordered rounded-sm w-full", placeholder: "備考など" %>
             </div>
           </div>
         </div>
@@ -77,13 +77,13 @@
     </div>
 
 <!-- 消化器官 -->
-    <div class="flex justify-center w-full mb-10">
+    <div class="flex justify-center w-full mb-5">
       <div class="card card-compact bg-base-100 w-full rounded-sm shadow-md h-auto mx-4">
         <div class="card-body">
           <p class="font-bold">消 化 器 官</p>
           <div class="border-t border-gray-300 mb-8"></div>
 
-          <p class="font-bold text-xs text-center">消化器官総合評価</p>
+          <p class="font-bold text-xs text-center">今日の消化器官総合評価</p>
           <p class="text-xs text-center mb-2">（グラフに反映されます）</p>
           <div class="rating flex justify-center items-center">
             <%= f.label :belly_rating, "評価しない", for: "belly_rating_0", class: "text-xs" %>
@@ -114,48 +114,109 @@
               <%= f.text_field :belly_memo, class: "textarea textarea-bordered rounded-sm w-full", placeholder: "備考など" %>
             </div>
           </div>
-
         </div>
       </div>
     </div>
 
-    <div class="divider text-xs mt-20">食  事</div>
-    <div class="rating flex justify-center items-center">
-      <%= f.label :meal_rating, "評価しない", for: "meal_rating_0", class: "text-xs" %>
-      <%= f.radio_button :meal_rating, 0, class: "mask mask-star-2 bg-gray-400 mr-5", id: "meal_rating_0", checked: true %>
-      <%= f.radio_button :meal_rating, 1, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_1" %>
-      <%= f.radio_button :meal_rating, 2, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_2" %>
-      <%= f.radio_button :meal_rating, 3, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_3" %>
-      <%= f.radio_button :meal_rating, 4, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_4" %>
-      <%= f.radio_button :meal_rating, 5, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_5" %>
+<!-- 食事 -->
+    <div class="flex justify-center w-full mb-5">
+      <div class="card card-compact bg-base-100 w-full rounded-sm shadow-md h-auto mx-4">
+        <div class="card-body">
+          <p class="font-bold">食 事</p>
+          <div class="border-t border-gray-300 mb-8"></div>
+
+          <p class="font-bold text-xs text-center">今日の食事総合評価</p>
+          <p class="text-xs text-center mb-2">（グラフに反映されます）</p>
+          <div class="rating flex justify-center items-center">
+            <%= f.label :meal_rating, "評価しない", for: "meal_rating_0", class: "text-xs" %>
+            <%= f.radio_button :meal_rating, 0, class: "mask mask-star-2 bg-gray-400 mr-5", id: "meal_rating_0", checked: true %>
+            <%= f.radio_button :meal_rating, 1, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_1" %>
+            <%= f.radio_button :meal_rating, 2, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_2" %>
+            <%= f.radio_button :meal_rating, 3, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_3" %>
+            <%= f.radio_button :meal_rating, 4, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_4" %>
+            <%= f.radio_button :meal_rating, 5, class: "mask mask-star-2 bg-ginkgo-500", id: "meal_rating_5" %>
+          </div>
+
+          <div class="mt-12 mb-8 w-full flex justify-center">
+            <div class="w-full">
+              <%= f.label :food, "食べたもの", class: "font-bold text-xs block mb-2 text-left" %>
+              <%= f.text_field :food, class: "textarea textarea-bordered rounded-sm w-full", placeholder: "朝：鮭、ごはん、お味噌汁" %>
+            </div>
+          </div>
+
+          <div class="mb-8 w-full flex justify-center">
+            <div class="w-full">
+              <%= f.label :meal_memo, "食事メモ", class: "font-bold text-xs block mb-2 text-left" %>
+              <%= f.text_field :meal_memo, class: "textarea textarea-bordered rounded-sm w-full", placeholder: "備考など" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="mt-12 w-full max-w-xs">
-      <%= f.label :food, "食べたもの", class: "text-xs block mb-2 text-left" %>
-      <%= f.text_field :food, class: "textarea textarea-bordered textarea-md rounded-sm w-full", placeholder: "朝：鮭、ごはん、お味噌汁" %>
+<!-- 体調 -->
+    <div class="flex justify-center w-full mb-5">
+      <div class="card card-compact bg-base-100 w-full rounded-sm shadow-md h-auto mx-4">
+        <div class="card-body">
+          <p class="font-bold">体 調</p>
+          <div class="border-t border-gray-300 mb-8"></div>
+
+          <p class="font-bold text-xs text-center">今日の体調総合評価</p>
+          <p class="text-xs text-center mb-2">（グラフに反映されます）</p>
+          <div class="rating flex justify-center items-center">
+            <%= f.label :condition_rating, "評価しない", for: "condition_rating_0", class: "text-xs" %>
+            <%= f.radio_button :condition_rating, 0, class: "mask mask-star-2 bg-gray-400 mr-5", id: "condition_rating_0", checked: true %>
+            <%= f.radio_button :condition_rating, 1, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_1" %>
+            <%= f.radio_button :condition_rating, 2, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_2" %>
+            <%= f.radio_button :condition_rating, 3, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_3" %>
+            <%= f.radio_button :condition_rating, 4, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_4" %>
+            <%= f.radio_button :condition_rating, 5, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_5" %>
+          </div>
+
+          <div class="text-xs">
+            <div class="flex items-center mt-12 mb-5">
+              <%= f.label :symptom_ids, "症状", class: "font-bold" %>
+            </div>
+            <div class="flex justify-center flex-wrap gap-3">
+              <%= f.collection_check_boxes(:symptom_ids, current_user.symptoms, :id, :symptom_name) do |b| %>
+                <div class="flex items-center">
+                  <%= b.check_box(class: "mr-1") %> <%= b.label %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="mt-12 mb-8 w-full flex justify-center">
+            <div class="w-full">
+              <%= f.label :condition_memo, "体調メモ", class: "font-bold text-xs block mb-2 text-left" %>
+              <%= f.text_field :condition_memo, class: "textarea textarea-bordered rounded-sm w-full", placeholder: "備考など" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="mt-8 w-full max-w-xs">
-      <%= f.label :meal_memo, "食事メモ", class: "text-xs block mb-2 text-left" %>
-      <%= f.text_field :meal_memo, class: "textarea textarea-bordered textarea-md rounded-sm w-full", placeholder: "食事メモ" %>
+<!-- ひとこと日記 -->
+    <div class="flex justify-center w-full mb-10">
+      <div class="card card-compact bg-base-100 w-full rounded-sm shadow-md h-auto mx-4">
+        <div class="card-body">
+          <p class="font-bold">ひ と こ と 日 記</p>
+          <div class="border-t border-gray-300 mb-8"></div>
+
+          <div class="mb-8 w-full flex justify-center">
+            <div class="w-full">
+              <%= f.text_field :diary, class: "textarea textarea-bordered rounded-sm w-full h-32", placeholder: "今日はどんな１日だった？" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="divider text-xs mt-20">体  調</div>
-    <div class="rating flex justify-center items-center">
-      <%= f.label :condition_rating, "評価しない", for: "condition_rating_0", class: "text-xs" %>
-      <%= f.radio_button :condition_rating, 0, class: "mask mask-star-2 bg-gray-400 mr-5", id: "condition_rating_0", checked: true %>
-      <%= f.radio_button :condition_rating, 1, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_1" %>
-      <%= f.radio_button :condition_rating, 2, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_2" %>
-      <%= f.radio_button :condition_rating, 3, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_3" %>
-      <%= f.radio_button :condition_rating, 4, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_4" %>
-      <%= f.radio_button :condition_rating, 5, class: "mask mask-star-2 bg-ginkgo-500", id: "condition_rating_5" %>
-    </div>
-
-    <div class="divider text-xs mt-20">ひとこと日記</div>
-    <%= f.text_field :diary, class: "textarea textarea-bordered h-32 w-full text-base rounded-sm max-w-xs mt-5", placeholder: "今日はどんな１日だった？" %>
-
-    <div class="card-actions justify-center mt-5">
-      <%= f.submit "登  録", class: "btn btn-sm glass mt-10 mb-10" %>
+    <div class="card-actions justify-center mx-4">
+      <%= f.submit "更  新", class: "text-white bg-ginkgo-500 w-full border-ginkgo-500 cursor-pointer hover:bg-ginkgo-500 hover:border-none transition active:scale-95 rounded-tl-none rounded-tr-[32px] rounded-bl-[32px] rounded-br-none py-2 mb-5" %>
     </div>
   <% end %>
+  <div class="flex justify-center mx-4 mb-10">
+    <%= link_to 'キャンセル', user_main_index_path(current_user) %>
+  </div>
 </div>
