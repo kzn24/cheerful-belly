@@ -8,7 +8,7 @@
             <span><%= record.record_date.strftime("%Y年%m月%d日") %>の記録</span>
             <div class="dropdown dropdown-end">
               <div tabindex="0" role="button" class="btn btn-xs bg-base-100 m-1">Menu</div>
-              <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-32 p-2 shadow">
+              <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-md z-[1] w-32 p-2 shadow">
                 <li><%= link_to "編集", edit_user_record_path(user_id: current_user.id, id: record.id) %></li>
                 <li><%= link_to "削除", user_record_path(user_id: current_user.id, id: record.id), data: { turbo_stream: true, turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %></li>
               </ul>
@@ -19,7 +19,7 @@
           <li class="my-12">服用済みお薬・サプリのデータ（未実装）</li>
 
           <div class="divider text-xs">ひとこと日記</div>
-          <li class="my-12"><%= record.diary %></li>
+          <li class="text-xs my-12"><%= record.diary %></li>
 
           <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-10 rounded-md text-left">
             <li class="font-bold mb-5">体 調</li>
@@ -28,21 +28,21 @@
             <li class="text-xs"><%= record.condition_memo %></li>
           </div>
 
-          <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-5 rounded-md text-left">
+          <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-2 rounded-md text-left">
             <li class="font-bold mb-5">消 化 器 官</li>
             <li class="text-xs"><%= record.belly_condition %></li>
             <div class="border-t border-dotted border-gray-400 my-5 mx-10"></div>
             <li class="text-xs"><%= record.belly_memo %></li>
           </div>
 
-          <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-5 rounded-md text-left">
+          <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-2 rounded-md text-left">
             <li class="font-bold mb-5">食 事</li>
             <li class="text-xs"><%= record.food %></li>
             <div class="border-t border-dotted border-gray-400 my-5 mx-10"></div>
             <li class="text-xs"><%= record.meal_memo %></li>
           </div>
 
-          <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-5 rounded-md text-left">
+          <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-2 rounded-md text-left">
             <li class="font-bold mb-5">排 便</li>
             <li class="text-xs mb-4">時間： <%= record.defecation %></li>
             <li class="text-xs mb-4">形状： <%= record.poop_shape %></li>

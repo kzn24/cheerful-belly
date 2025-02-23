@@ -29,8 +29,8 @@
             <% end %>
           </td>
           <td class="flex items-center">
-            <%= link_to image_tag('edit.svg', class: "w-8 h-8 min-w-6 min-h-6"), edit_user_schedule_path(current_user, schedule) %>
-            <%= link_to image_tag('trash.svg', class: "w-9 h-9 min-w-7 min-h-7"), user_schedule_path(current_user, schedule), data: { turbo_method: :delete, turbo_confirm: "#{schedule.drug.present? ? schedule.drug.drug_name : schedule.supplement.supplement_name}のスケジュールを削除しますか？" } %>
+            <%= link_to image_tag('edit.svg', class: "w-7 h-7 min-w-6 min-h-6"), edit_user_schedule_path(current_user, schedule) %>
+            <%= link_to image_tag('trash.svg', class: "w-7 h-7 min-w-6 min-h-6"), user_schedule_path(current_user, schedule), data: { turbo_method: :delete, turbo_confirm: "#{schedule.drug.present? ? schedule.drug.drug_name : schedule.supplement.supplement_name}のスケジュールを削除しますか？" } %>
           </td>
         </tr>
       <% end %>
