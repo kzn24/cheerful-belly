@@ -2,6 +2,10 @@ class Record < ApplicationRecord
   belongs_to :user
   has_many :record_symptoms, dependent: :destroy
   has_many :symptoms, through: :record_symptoms
+  has_many :record_drugs, dependent: :destroy
+  has_many :drugs, through: :record_drugs
+  has_many :record_supplements, dependent: :destroy
+  has_many :supplements, through: :record_supplements
 
   validates :condition_rating, :belly_rating, :meal_rating, :poop_rating, inclusion: { in: 0..5 }
   validates :food, :meal_memo, :poop_memo, :belly_memo, :condition_memo, length: { maximum: 255 }
