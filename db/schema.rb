@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_21_084517) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_23_072737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,24 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_21_084517) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_drugs_on_user_id"
+  end
+
+  create_table "record_drugs", force: :cascade do |t|
+    t.bigint "record_id", null: false
+    t.bigint "drug_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["drug_id"], name: "index_record_drugs_on_drug_id"
+    t.index ["record_id"], name: "index_record_drugs_on_record_id"
+  end
+
+  create_table "record_supplements", force: :cascade do |t|
+    t.bigint "record_id", null: false
+    t.bigint "supplement_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_id"], name: "index_record_supplements_on_record_id"
+    t.index ["supplement_id"], name: "index_record_supplements_on_supplement_id"
   end
 
   create_table "record_symptoms", force: :cascade do |t|
@@ -101,6 +119,10 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_21_084517) do
   end
 
   add_foreign_key "drugs", "users"
+  add_foreign_key "record_drugs", "drugs"
+  add_foreign_key "record_drugs", "records"
+  add_foreign_key "record_supplements", "records"
+  add_foreign_key "record_supplements", "supplements"
   add_foreign_key "record_symptoms", "records"
   add_foreign_key "record_symptoms", "symptoms"
   add_foreign_key "records", "users"
