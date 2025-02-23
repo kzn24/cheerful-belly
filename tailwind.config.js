@@ -38,10 +38,13 @@ module.exports = {
         },
         sky: {
           100: "#f4f6f9",
+          200: "#e0e7ef",
+          300: "#c6d2e2",
           500: "#92aac7",
         },
         leaf: {
           100: "#f5f8f4",
+          200: "#e2ebde",
           500: "#a1be95",
         },
         tomato: "#ed5752",
