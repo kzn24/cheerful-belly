@@ -15,7 +15,7 @@
     <div class="flex space-x-4">
       <div class="w-1/2">
         <%= f.label :last_name, raw("姓 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mb-1 text-left" %>
-        <%= f.text_field :last_name, class: "input input-bordered rounded-sm w-full" %>
+        <%= f.text_field :last_name, autofocus: true, class: "input input-bordered rounded-sm w-full" %>
       </div>
       <div class="w-1/2">
         <%= f.label :first_name, raw("名 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mb-1 text-left" %>
