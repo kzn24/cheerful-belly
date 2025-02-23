@@ -16,9 +16,21 @@
           </li>
           <div class="border-t border-gray-900 mb-5 mt-1"></div>
 
-          <li class="my-12">服用済みお薬・サプリのデータ（未実装）</li>
+          <div class="text-xs text-left mb-1">服用したお薬</div>
+          <div class="flex flex-wrap gap-1">
+            <% record.drugs.each do |drug| %>
+              <span class="badge badge-sm bg-sky-200 text-xs rounded-md p-1"><%= drug.drug_name %></span>
+            <% end %>
+          </div>
 
-          <div class="divider text-xs">ひとこと日記</div>
+          <div class="text-xs text-left mt-5 mb-1">服用したサプリメント</div>
+          <div class="flex flex-wrap gap-1">
+            <% record.supplements.each do |supplement| %>
+              <span class="badge badge-sm bg-leaf-200 text-xs rounded-md p-1"><%= supplement.supplement_name %></span>
+            <% end %>
+          </div>
+
+          <div class="divider text-xs mt-5">ひとこと日記</div>
           <li class="text-xs my-12"><%= record.diary %></li>
 
           <div class="card card-compact bg-base-100 w-full h-auto px-4 py-3.5 mt-10 rounded-md text-left">
