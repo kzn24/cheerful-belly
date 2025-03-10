@@ -1,0 +1,36 @@
+<!-- お問い合わせページ-->
+<p class="text-lg ml-4 mt-20">お問い合わせ</p>
+<div class="border-t border-gray-900 mb-12 mt-1"></div>
+
+<p class="text-sm mb-6 ml-4"> 
+  <span class="text-ginkgo-900">*</span> が付いている項目は必須です。
+</p>
+
+<div class="flex flex-col w-full px-4">
+  <%= form_with model: @inquiry, url: inquiries_path, local: true do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <div>
+      <%= f.label :customer_name, raw("お名前 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mt-12 mb-1 text-left" %>
+      <%= f.text_field :customer_name, autofocus: true, class: "input input-bordered rounded-sm w-full" %>
+    </div>
+
+    <div>
+      <%= f.label :customer_email, raw("メールアドレス <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mt-12 mb-1 text-left" %>
+      <%= f.email_field :customer_email, class: "input input-bordered rounded-sm w-full" %>
+    </div>
+
+    <div>
+      <%= f.label :inquiry_message, raw("問い合わせ内容 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mt-12 mb-1 text-left" %>
+      <%= f.text_area :inquiry_message, class: "input input-bordered rounded-sm w-full h-32" %>
+    </div>
+
+    <div class="card-actions justify-center mt-8">
+      <%= f.submit "送        信", class: "text-gray-900 bg-ginkgo-100 w-full cursor-pointer hover:bg-ginkgo-500 hover:border-none transition active:scale-95 rounded-tl-none rounded-tr-[32px] rounded-bl-[32px] rounded-br-none py-2 mb-5" %>
+    </div>
+  <% end %>
+
+  <div class="flex justify-center mx-4 mb-10">
+    <%= link_to 'キャンセル', user_main_index_path(current_user) %>
+  </div>
+</div>
