@@ -48,12 +48,12 @@ Rails.application.configure do
   # SMTPの設定
   config.action_mailer.smtp_settings = {
     port: 587,                            # ５８７はTLS(暗号化)を使うためのポート
-    address: 'smtp.gmail.com',
-    domain: 'gmail.com',
+    address: "smtp.gmail.com",
+    domain: "gmail.com",
     enable_starttls_auto: true,           # TLSを自動で有効にする
-    authentication: 'plain',              # 入力情報をplain（平文）でSMTPサーバに送信する。（暗号化されているので安全）
-    user_name: ENV['MAIL_ADDRESS'],
-    password: ENV['MAIL_PASSWORD']
+    authentication: "plain",              # 入力情報をplain（平文）でSMTPサーバに送信する。（暗号化されているので安全）
+    user_name: ENV["MAIL_ADDRESS"],
+    password: ENV["MAIL_PASSWORD"]
   }
 
   # Print deprecation notices to the Rails logger.
