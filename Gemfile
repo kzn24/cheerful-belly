@@ -67,3 +67,6 @@ gem "devise-i18n-views"
 # グラフ関係
 gem "groupdate"
 gem "chartkick"
+
+# 環境変数管理
+gem "dotenv-rails"

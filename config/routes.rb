@@ -23,4 +23,6 @@ Rails.application.routes.draw do
     resources :schedules
     resources :records, only: %i[ new create show edit update destroy ]
   end
+
+  resources :inquiries, only: %i[ new create ]
 end
