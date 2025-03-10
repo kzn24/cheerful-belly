@@ -34,14 +34,27 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # メール送信失敗時にエラーを発生させる
+  config.action_mailer.raise_delivery_errors = true
 
-  # Disable caching for Action Mailer templates even if Action Controller
-  # caching is enabled.
+  # メールのキャッシュを無効
   config.action_mailer.perform_caching = false
 
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+
+  # メール送信時のプロトコルをSMTPに設定（SMTPはメール送信のための一般的なプロトコル）
+  config.action_mailer.delivery_method = :smtp
+
+  # SMTPの設定
+  config.action_mailer.smtp_settings = {
+    port: 587,                            # ５８７はTLS(暗号化)を使うためのポート
+    address: 'smtp.gmail.com',
+    domain: 'gmail.com',
+    enable_starttls_auto: true,           # TLSを自動で有効にする
+    authentication: 'plain',              # 入力情報をplain（平文）でSMTPサーバに送信する。（暗号化されているので安全）
+    user_name: ENV['MAIL_ADDRESS'],
+    password: ENV['MAIL_PASSWORD']
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
