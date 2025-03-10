@@ -24,6 +24,5 @@ Rails.application.routes.draw do
     resources :records, only: %i[ new create show edit update destroy ]
   end
 
-  resources :inquiries, only: [:new, :create]
-
+  resources :inquiries, only: %i[ new create ]
 end
