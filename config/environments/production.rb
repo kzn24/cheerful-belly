@@ -1,5 +1,6 @@
 require "active_support/core_ext/integer/time"
 
+# 本番環境の設定
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -74,9 +75,24 @@ Rails.application.configure do
   # config.active_job.queue_adapter = :resque
   # config.active_job.queue_name_prefix = "myapp_production"
 
-  # Disable caching for Action Mailer templates even if Action Controller
-  # caching is enabled.
+  # メールの内容が常に最新のものになるようキャッシュを無効化
   config.action_mailer.perform_caching = false
+
+  # メール送信方法をSMTP(外部メールサーバ経由)に設定
+  config.action_mailer.delivery_method = :smtp
+
+  # SMTPの設定
+  config.action_mailer.smtp_settings = {
+    port: 587,                            # ５８７はTLS(暗号化)を使うためのポート
+    address: "smtp.gmail.com",
+    domain: "gmail.com",
+    enable_starttls_auto: true,           # TLSを自動で有効にする
+    authentication: "plain",              # 入力情報をplain（平文）でSMTPサーバに送信する。（暗号化されているので安全）
+    user_name: ENV["MAIL_ADDRESS"],
+    password: ENV["MAIL_PASSWORD"]
+  }
+
+  config.action_mailer.default_url_options = { host: "あなたのRenderのURL", protocol: "https" }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
