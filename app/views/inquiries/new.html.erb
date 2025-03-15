@@ -22,10 +22,12 @@
 
     <div>
       <%= f.label :inquiry_message, raw("問い合わせ内容 <span class='text-ginkgo-900'>*</span>"), class: "text-xs block mt-12 mb-1 text-left" %>
-      <%= f.text_area :inquiry_message, class: "input input-bordered rounded-sm w-full h-32" %>
+      <%= f.text_area :inquiry_message, class: "input input-bordered rounded-sm w-full h-60 py-3" %>
     </div>
 
-    <div class="card-actions justify-center mt-8">
+    <div class="text-xs text-center mt-12 mb-4">入力内容をご確認後、送信ボタンを押してください。</div>
+
+    <div class="card-actions justify-center">
       <%= f.submit "送        信", class: "text-gray-900 bg-ginkgo-100 w-full cursor-pointer hover:bg-ginkgo-500 hover:border-none transition active:scale-95 rounded-tl-none rounded-tr-[32px] rounded-bl-[32px] rounded-br-none py-2 mb-5" %>
     </div>
   <% end %>
